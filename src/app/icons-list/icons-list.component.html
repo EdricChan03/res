@@ -36,6 +36,6 @@
 		<mat-icon svgIcon="{{icon.name}}"></mat-icon>
 	</div>
 </div>
-<button mat-fab aria-label="Open code snippet" class="copy-code-snippet-overlay-btn" matTooltip="Show code snippet" matTooltipPosition="left" *ngIf="!isMobile && selectedIcon" @enterAnimation (click)="showCodeSnippet($event)" [style.bottom]="hasScrolled() ? '120px':'40px'">
+<button mat-fab aria-label="Open code snippet" class="copy-code-snippet-overlay-btn" matTooltip="Show code snippet" matTooltipPosition="left" *ngIf="!isMobile && selectedIcon != ''" @enterAnimation (click)="showCodeSnippet($event)" [style.bottom]="hasScrolled() ? '120px':'40px'">
 	<mat-icon svgIcon="code-tags"></mat-icon>
 </button>

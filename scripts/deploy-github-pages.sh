@@ -4,7 +4,7 @@
 ng build --prod --base-href /res/ --deploy-url /res/
 
 # Copies `mdi.svg` to the dist folder
-cp ./mdi.svg dist/
+cp ./src/assets/mdi.svg dist/
 # Deploys the app to Github pages
 ngh
 # Removes the dist directory
