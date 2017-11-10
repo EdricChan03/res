@@ -19,9 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 //#endregion
 //#region CDK imports
-import { A11yModule } from '@angular/cdk/a11y';
 import { LayoutModule } from '@angular/cdk/layout';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { DomSanitizer } from '@angular/platform-browser';
 //#endregion
 //#region Material modules required by the app
@@ -45,9 +43,7 @@ const MATERIAL_MODULES = [
 //#endregion
 //#region CDK modules required by the app
 const CDK_MODULES = [
-    A11yModule,
-    LayoutModule,
-    OverlayModule
+    LayoutModule
 ];
 //#endregion
 @NgModule({
