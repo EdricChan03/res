@@ -1,0 +1,186 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/theming';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~highlight.js/styles/solarized-light.css';
+@include mat-core();
+pre,
+code,
+kbd,
+samp,
+.hljs {
+    font-family: "Roboto Mono", "Courier New", Courier, monospace;
+}
+.docs-code {
+	background-color: rgba(0,0,0,.03);
+	padding: 3px;
+}
+p:not([override]) {
+	line-height: 28px;
+}
+.scroll-to-top-btn {
+	position: fixed !important;
+	bottom: 40px;
+	right: 40px;
+	z-index: 1;
+}
+button.mat-menu-item {
+    line-height: 24px !important;
+}
+
+a.mat-menu-item>mat-icon {
+    margin-bottom: 14px;
+}
+
+.mat-icon svg {
+    height: 24px;
+    width: 24px;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+}
+
+.copy-code-snippet-overlay-btn {
+    position: fixed !important;
+    bottom: 40px;
+    right: 40px;
+}
+
+
+/*
+Used as follows:
+<button mat-raised-button class="unelevated-btn">Content here</button>
+<a mat-raised-button class="unelevated-btn">Content here</a>
+*/
+
+.unelevated-btn {
+    box-shadow: none !important;
+}
+
+.app-content {
+    padding: 2.5%;
+}
+
+button.mat-menu-item {
+    line-height: 24px !important;
+}
+
+a.mat-menu-item>mat-icon {
+    margin-bottom: 14px;
+}
+
+.mat-icon>svg {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-square {
+    border: 1px solid rgb(175, 175, 175);
+    display: flex;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    vertical-align: middle;
+    cursor: pointer;
+    margin: 2px;
+    -webkit-transition: all 200ms;
+    transition: all 200ms;
+}
+
+.icon-square mat-icon {
+    display: block;
+    margin: 0 auto;
+}
+
+.example-code-snippet {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: relative;
+    min-height: 47px;
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+    color: #607D8B;
+    background-color: #fdf6e3 !important;
+    font-family: "Roboto Mono", monospace;
+    background-color: rgba(0, 0, 0, .01);
+    border: .5px solid rgba(0, 0, 0, .03);
+}
+
+.docs-copy-btn {
+    position: absolute !important;
+    right: 4px;
+    top: 4px;
+}
+
+.docs-code,
+.docs-example-code,
+code {
+    font-family: "Roboto Mono", monospace;
+    white-space: pre-wrap;
+    font-size: 14px;
+    tab-size: 4;
+    -o-tab-size: 4;
+    -moz-tab-size: 4;
+}
+
+.icon-selected,
+.icon-square:hover {
+    background-color: #673ab7;
+    color: rgba(255, 255, 255, .87);
+}
+
+.icon-selected {
+    border: 0;
+    width: 50px;
+    height: 50px;
+    -webkit-transition: color 200ms, background-color 200ms, box-shadow 200ms;
+    transition: color 200ms, background-color 200ms, box-shadow 200ms;
+}
+
+.app-sidenav {
+    min-width: 210px;
+}
+
+.active-link {
+    color: #673ab7 !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.website-logo-icon {
+    padding-right: 4px;
+}
+
+.website-logo,
+.website-logo svg {
+    width: 223px !important;
+    height: 36px !important;
+}
+
+.page-title {
+    background-color: #673ab7;
+}
+
+.page-title h1 {
+    font-size: 30px;
+    font-weight: 300;
+    margin: 0;
+    padding: 28px 8px;
+    font-size: 20px;
+    color: white;
+}
+
+@media (min-width: 601px) {
+    .page-title h1 {
+        padding-left: 20px;
+    }
+}
+
+.app-toolbar {
+    position: relative;
+    z-index: 2;
+}
