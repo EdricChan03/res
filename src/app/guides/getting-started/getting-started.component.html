@@ -27,8 +27,9 @@ import &#123; HttpClientModule &#125; from '@angular/common/http';
 		<li>
 			<p>Next, add a <code class="docs-code">constructor</code> to your app's module as below:</p>
 			<code-viewer language="typescript">export class AppModule &#123;
-constructor(private matIconRegistry: MatIconRegistry, private dom: DomSanitizer)&#123;
-	matIconRegistry.addSvgIconSet(dom.bypassSecurityResourceUrl('./assets/mdi.svg'));						
+	constructor(private matIconRegistry: MatIconRegistry, private dom: DomSanitizer)&#123;
+		matIconRegistry.addSvgIconSet(dom.bypassSecurityResourceUrl('./assets/mdi.svg'));
+	&#125;				
 &#125;</code-viewer>
 		</li>
 		<li>
