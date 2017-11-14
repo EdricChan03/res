@@ -11,19 +11,23 @@ samp,
 .hljs {
     font-family: "Roboto Mono", "Courier New", Courier, monospace;
 }
+
 .docs-code {
-	background-color: rgba(0,0,0,.03);
-	padding: 3px;
+    background-color: rgba(0, 0, 0, .03);
+    padding: 3px;
 }
+
 p:not([override]) {
-	line-height: 28px;
+    line-height: 28px;
 }
+
 .scroll-to-top-btn {
-	position: fixed !important;
-	bottom: 40px;
-	right: 40px;
-	z-index: 1;
+    position: fixed !important;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1;
 }
+
 button.mat-menu-item {
     line-height: 24px !important;
 }
