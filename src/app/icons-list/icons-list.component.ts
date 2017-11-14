@@ -1,4 +1,4 @@
-import { Shared } from './../shared';
+import { SharedInjectable } from '../shared';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,7 +34,7 @@ export class IconsListComponent implements OnInit {
 	multipleCategories: boolean;
 	iconSelected: boolean;
 	showSearch: boolean = false;
-	constructor(private http: HttpClient, private snackbar: MatSnackBar, private shared: Shared, private dialog: MatDialog) { }
+	constructor(private http: HttpClient, private snackbar: MatSnackBar, private shared: SharedInjectable, private dialog: MatDialog) { }
 	get isMobile() {
 		return this.shared.isMobile();
 	}
@@ -46,7 +46,7 @@ export class IconsListComponent implements OnInit {
 		}
 	}
 	ngOnInit() {
-		this.shared._title = "Home";
+		this.shared.title = "Home";
 		this.http.get<Icon[]>("https://materialdesignicons.com/cdn/2.0.46/meta.json", { responseType: "json" }).subscribe(result => {
 			this.icons = result;
 		}, (error: Error) => {

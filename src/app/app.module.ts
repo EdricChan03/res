@@ -1,4 +1,4 @@
-import { Shared, AlertDialog, ConfirmDialog, PromptDialog, SelectionDialog } from './shared';
+import { SharedModule } from './shared';
 import { AppRouting } from './app.routing';
 import { CodeViewerComponent } from './code-viewer/code-viewer.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,20 +16,12 @@ import { IconsListComponent } from './icons-list/icons-list.component';
 import { CodeSnippetComponent } from './code-snippet/code-snippet.component';
 import { HomeComponent } from './home/home.component';
 
-const SHARED_DIALOGS = [
-	AlertDialog,
-	ConfirmDialog,
-	PromptDialog,
-	SelectionDialog
-];
-
 @NgModule({
 	declarations: [
 		AppComponent,
 		CodeViewerComponent,
 		GettingStartedComponent,
 		IconsListComponent,
-		SHARED_DIALOGS,
 		CodeSnippetComponent,
 		HomeComponent
 	],
@@ -40,12 +32,11 @@ const SHARED_DIALOGS = [
 		FlexLayoutModule,
 		HttpClientModule,
 		MaterialModule,
+		SharedModule,
 		AppRouting
 	],
-	providers: [Shared],
 	bootstrap: [AppComponent],
 	entryComponents: [
-		SHARED_DIALOGS,
 		CodeSnippetComponent
 	]
 })

@@ -1,4 +1,4 @@
-import { Shared } from './shared';
+import { SharedInjectable } from './shared';
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { trigger, style, animate, transition } from '@angular/animations';
@@ -22,7 +22,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 	]
 })
 export class AppComponent {
-	constructor(private shared: Shared){
+	constructor(private shared: SharedInjectable){
 	}
 	@ViewChild('sidenav') sidenav: MatSidenav;
 	get isMobile() {

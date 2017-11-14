@@ -1,15 +1,22 @@
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 import { Observable } from 'rxjs/Observable';
-import { Injectable, Component, OnInit, ViewChild, DoCheck } from '@angular/core';
-import { MatSnackBarConfig, MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
-import { MatSelectionList } from '@angular/material/list';
+import { Injectable, Component, OnInit, ViewChild, DoCheck, NgModule } from '@angular/core';
+import { MatSnackBarConfig, MatSnackBar, MatSnackBarRef, SimpleSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
+import { MatSelectionList, MatListModule } from '@angular/material/list';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ComponentType } from '@angular/cdk/portal';
 import { Title, SafeHtml } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { MatCommonModule } from '@angular/material/core';
 
 @Injectable()
-export class Shared {
-	_title: string = "";
+export class SharedInjectable {
+	private _title: string = "";
 	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private documentTitle: Title, private breakpointObserver: BreakpointObserver) { }
 	/**
 	 * Sends feedback
@@ -550,3 +557,36 @@ export interface SelectionDialogOptions {
 	 */
 	selected?: boolean;
 }
+const SHARED_DIALOGS = [
+	AlertDialog,
+	ConfirmDialog,
+	PromptDialog,
+	SelectionDialog
+]
+@NgModule({
+	declarations: [
+		SHARED_DIALOGS
+	],
+	exports: [
+		SHARED_DIALOGS
+	],
+	providers: [
+		SharedInjectable
+	],
+	imports: [
+		CommonModule,
+		BrowserAnimationsModule,
+		FormsModule,
+		MatCommonModule,
+		MatButtonModule,
+		MatDialogModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatListModule,
+		MatSnackBarModule
+	],
+	entryComponents: [
+		SHARED_DIALOGS
+	]
+})
+export class SharedModule {}
