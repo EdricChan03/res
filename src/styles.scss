@@ -2,7 +2,7 @@
 
 @import '~@angular/material/theming';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '~highlight.js/styles/solarized-light.css';
+@import '~assets/material-light.css';
 @include mat-core();
 pre,
 code,
@@ -109,9 +109,6 @@ a.mat-menu-item>mat-icon {
     overflow-x: auto;
     padding: 1em;
     color: #607D8B;
-    background-color: #fdf6e3 !important;
-    font-family: "Roboto Mono", monospace;
-    background-color: rgba(0, 0, 0, .01);
     border: .5px solid rgba(0, 0, 0, .03);
 }
 
