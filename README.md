@@ -23,6 +23,8 @@ Run `ng serve` to serve the app. Specify the `--open` parameter to automatically
 [Back to top](#top)
 # Gulp tasks
 [Back to top](#top)
+<a name="gulp-task-default-icons"></a>
+
 ## `default-icons` <sub><sup>:white_check_mark: STABLE</sup></sub>
 ```bash
 gulp default-icons
@@ -30,12 +32,17 @@ gulp default-icons
 Executes the default workflow of using icons in the project.
 
 [Back to top](#top)
+<a name="gulp-task-no-download-icons"></a>
+
 ## `no-download-icons` <sub><sup>:white_check_mark: STABLE</sup></sub>
 ```bash
 gulp no-download-icons
 ```
 Executes the same workflow as above, but assumes that you've already downloaded `src/assets/mdi.svg`.
+
 [Back to top](#top)
+<a name="gulp-task-download-icons"></a>
+
 ## `download-icons` <sub><sup>:white_check_mark: STABLE</sup></sub>
 ```bash
 gulp download-icons
@@ -45,16 +52,25 @@ Alternatively, you can download the icons yourself and place it under `src/asset
 
 [Back to top](#top)
 
+<a name="gulp-task-download-icons-params"></a>
+
 ### Params
 View the source code to see all the available parameters.
 
 [Back to top](#top)
+
+<a name="gulp-task-download-icons-param-show-file-storage"></a>
+
 #### `--show-file-storage` <sub><sup>:warning: EXPERIMENTAL</sup></sub>
 ```bash
 gulp download-icons --show-file-storage
 ```
 **Currently not working right now. DO NOT USE.**
+
 [Back to top](#top)
+
+<a name="gulp-task-download-icons-param-show-file-transfer"></a>
+
 #### `--show-file-transfer` <sub><sup>:white_check_mark: STABLE</sup></sub>
 ```bash
 gulp download-icons --show-file-transfer
@@ -67,6 +83,8 @@ Preview:
 ```
 [Back to top](#top)
 
+<a name="gulp-task-download-icons-param-verbose"></a>
+
 #### `--verbose` <sub><sup>:warning: EXPERIMENTAL</sup></sub>
 ```bash
 gulp download-icons --verbose
@@ -76,6 +94,9 @@ Enables verbose logging.
 [Back to top](#top)
 
 ---
+
+<a name="gulp-task-modify-icons"></a>
+
 ## `modify-icons` <sub><sup>:white_check_mark: STABLE</sup></sub>
 Modifies the icons to work with Angular Material 2/5.
 
