@@ -74,8 +74,9 @@ gulp download-icons --verbose
 Enables verbose logging.
 **Currently a bit broken.**
 [Back to top](#top)
+
 ---
-## `modify-icons` <sub><sup style="color: green">STABLE</sup></sub>
+## `modify-icons` <sub><sup>:white_check_mark: STABLE</sup></sub>
 Modifies the icons to work with Angular Material 2/5.
 
 [Back to top](#top)
