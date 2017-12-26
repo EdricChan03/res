@@ -29,11 +29,11 @@ export class IconsListComponent implements OnInit {
 	filteredIcons: Icon[];
 	selectedIcon: string;
 	searchField: string;
-	category: "name" | "tag" | "alias" | "contributor";
+	category: 'name' | 'tag' | 'alias' | 'contributor';
 	categories: string[];
 	multipleCategories: boolean;
 	iconSelected: boolean;
-	showSearch: boolean = false;
+	showSearch = false;
 	constructor(private http: HttpClient, private snackbar: MatSnackBar, private shared: SharedInjectable, private dialog: MatDialog) { }
 	get isMobile() {
 		return this.shared.isMobile();
@@ -46,38 +46,40 @@ export class IconsListComponent implements OnInit {
 		}
 	}
 	ngOnInit() {
-		this.shared.title = "Home";
-		this.http.get<Icon[]>("https://materialdesignicons.com/cdn/2.0.46/meta.json", { responseType: "json" }).subscribe(result => {
+		this.shared.title = 'Home';
+		this.http.get<Icon[]>('https://materialdesignicons.com/cdn/2.1.19/meta.json', { responseType: 'json' }).subscribe(result => {
 			this.icons = result;
 		}, (error: Error) => {
-			let snackBarRef = this.snackbar.open(`Error: ${error.message}`, "Send Feedback", { duration: 8000, horizontalPosition: "start", extraClasses: ['mat-elevation-z2'] });
+			// tslint:disable-next-line:max-line-length
+			const snackBarRef = this.snackbar.open(`Error: ${error.message}`, 'Send Feedback', { duration: 8000, horizontalPosition: 'start', extraClasses: ['mat-elevation-z2'] });
 			snackBarRef.onAction().subscribe(() => {
-				let dialogRef = this.shared.sendFeedbackWithRef(error.message);
+				const dialogRef = this.shared.sendFeedbackWithRef(error.message);
 				dialogRef.afterClosed().subscribe(result => {
 					if (result) {
-						if (result == 'cancel') {
+						if (result === 'cancel') {
 							// Catch cancel click
 						} else {
 							// Submit feedback
-							this.shared.openSnackBar({ msg: "Your feedback has been sent!", additionalOpts: { duration: 6000, horizontalPosition: "start", extraClasses: ['mat-elevation-z2'] } });
+							// tslint:disable-next-line:max-line-length
+							this.shared.openSnackBar({ msg: 'Your feedback has been sent!', additionalOpts: { duration: 6000, horizontalPosition: 'start', extraClasses: ['mat-elevation-z2'] } });
 						}
 					}
 				})
-			})
+			});
 		});
 	}
 	search() {
 		if (this.category) {
 			// User selected a category
-			if (this.category == 'contributor') {
+			if (this.category === 'contributor') {
 				this.filteredIcons = this.icons.filter((icon) => {
 					if (icon.contributor.indexOf(this.searchField.toLowerCase()) > -1) {
 						return true;
 					} else {
 						return false;
 					}
-				})
-			} else if (this.category == 'tag') {
+				});
+			} else if (this.category === 'tag') {
 				this.filteredIcons = this.icons.filter((icon) => {
 					icon.tags.filter((tag) => {
 						if (tag.indexOf(this.searchField.toLowerCase()) > -1) {
@@ -85,9 +87,9 @@ export class IconsListComponent implements OnInit {
 						} else {
 							return false;
 						}
-					})
-				})
-			} else if (this.category == 'alias') {
+					});
+				});
+			} else if (this.category === 'alias') {
 				this.filteredIcons = this.icons.filter((icon) => {
 					icon.aliases.filter((alias) => {
 						if (alias.indexOf(this.searchField.toLowerCase()) > -1) {
@@ -95,8 +97,8 @@ export class IconsListComponent implements OnInit {
 						} else {
 							return false;
 						}
-					})
-				})
+					});
+				});
 			} else {
 				this.filteredIcons = this.icons.filter((icon) => {
 					if (icon.name.indexOf(this.searchField.toLowerCase()) > -1) {
@@ -104,7 +106,7 @@ export class IconsListComponent implements OnInit {
 					} else {
 						return false;
 					}
-				})
+				});
 			}
 		} else {
 			// User did not select any category
@@ -116,21 +118,21 @@ export class IconsListComponent implements OnInit {
 						if (tag.indexOf(this.searchField.toLowerCase()) > -1) {
 							return true;
 						}
-					})
+					});
 				} else if (icon.aliases) {
 					icon.aliases.filter((alias) => {
 						if (alias.indexOf(this.searchField.toLowerCase()) > -1) {
 							return true;
 						}
-					})
+					});
 				} else {
 					return false;
 				}
-			})
+			});
 		}
 	}
 	selected(name: string) {
-		if (this.selectedIcon == name) {
+		if (this.selectedIcon === name) {
 			this.selectedIcon = null;
 			this.iconSelected = false;
 		} else {
@@ -145,7 +147,7 @@ export class IconsListComponent implements OnInit {
 	}
 
 	showCodeSnippet() {
-		let dialogRef = this.dialog.open(CodeSnippetComponent);
+		const dialogRef = this.dialog.open(CodeSnippetComponent);
 		dialogRef.componentInstance.selectedIcon = this.selectedIcon;
 	}
 }

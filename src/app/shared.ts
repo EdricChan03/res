@@ -16,7 +16,7 @@ import { MatCommonModule } from '@angular/material/core';
 
 @Injectable()
 export class SharedInjectable {
-	private _title: string = "";
+	private _title: string = '';
 	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private documentTitle: Title, private breakpointObserver: BreakpointObserver) { }
 	/**
 	 * Sends feedback
@@ -24,7 +24,7 @@ export class SharedInjectable {
 	 * @returns The dialog ref of the dialog
 	 */
 	public sendFeedbackWithRef(feedback?: string): MatDialogRef<PromptDialog> {
-		let tempData: PromptDialogConfig = {title: "Send Feedback", msg: "What's the issue? Please report it in the textbox below:", placeholder: "Feedback", textarea: true, ok: "Send Feedback"};
+		let tempData: PromptDialogConfig = { title: 'Send Feedback', msg: 'What\'s the issue? Please report it in the textbox below:', placeholder: 'Feedback', textarea: true, ok: 'Send Feedback' };
 		if (feedback) {
 			tempData.value = feedback;
 		}
@@ -33,17 +33,17 @@ export class SharedInjectable {
 	/**
 	 * Sends feedback but handles it in the service
 	 * @param {string} feedback The initial value for the feedback
-	 * @param {"twitter"|"facebook"|"github"} handleVia The way to handle the feedback
+	 * @param {'twitter'|'facebook'|'github'} handleVia The way to handle the feedback
 	 * @note If the param `handleVia` is specified, it assumes that the user has an account for these
 	 * @todo Use Twitter/ Facebook API. Github can just use following url: https://github.com/<author>/<repo>/issues/new
 	 * @todo Add handling for when no external social media provider is specified
 	 * @todo Make this fully work, currently setting to `private` at the moment
 	 * @private
 	 */
-	private sendFeedback(feedback?: string, handleVia?: "twitter"|"facebook"|"github") {
-		let tempData: PromptDialogConfig = {title: "Send Feedback", msg: "What's the issue? Please report it in the textbox below:", placeholder: "Feedback", textarea: true, ok: "Send Feedback"};
+	private sendFeedback(feedback?: string, handleVia?: 'twitter' | 'facebook' | 'github') {
+		let tempData: PromptDialogConfig = { title: 'Send Feedback', msg: 'What\'s the issue? Please report it in the textbox below:', placeholder: 'Feedback', textarea: true, ok: 'Send Feedback' };
 		let dialogRef = this.openPromptDialog(tempData);
-		dialogRef.afterClosed().subscribe(result=> {
+		dialogRef.afterClosed().subscribe(result => {
 			if (result) {
 				if (result == 'cancel') {
 					// User cancelled
@@ -81,8 +81,8 @@ export class SharedInjectable {
 	 * Opens a snackBar with the specified params and no return
 	 * @param {SnackBarConfig} opts The options of the snackBar
 	 */
-	public openSnackBar(opts: SnackBarConfig) {
-		this.handleSnackBar(opts);
+	public openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
+		return this.handleSnackBar(opts);
 	}
 	/**
 	 * Opens a snackBar with the specified params and a return of the snackBar's ref (for component)
@@ -93,54 +93,20 @@ export class SharedInjectable {
 		return this.handleSnackBarWithComponent(opts);
 	}
 	/**
-	 * Opens a snackBar with the specified params and a return of the snackBar's ref (not for component)
-	 * @param {SnackBarConfig} opts The options of the snackBar
-	 * The snackbar ref
-	 */
-	public openSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
-		return this.handleSnackBarWithRef(opts);
-	}
-	/**
 	 * Handling of the snackBar
 	 * @param {SnackBarConfig} opts The snackBar config
-	 * @private
-	 */
-	private handleSnackBar(opts: SnackBarConfig) {
-		if (opts) {
-			if (opts.component) {
-				if (opts.additionalOpts) {
-					this.snackBar.openFromComponent(opts.component, opts.additionalOpts);
-				} else {
-					this.snackBar.openFromComponent(opts.component);
-				}
-			} else {
-				if (opts.action) {
-					this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
-				} else {
-					this.snackBar.open(opts.msg, undefined, opts.additionalOpts);
-				}
-			}
-		} else {
-			this.throwError("message", "string");
-		}
-	}
-	/**
-	 * Handles a snackBar with a snackBarref if the developer needs a return
-	 * @param {SnackBarConfig} opts The config for the snackBar.
 	 * @returns {MatSnackBarRef<SimpleSnackBar>}
 	 * @private
 	 */
-	private handleSnackBarWithRef(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
+	private handleSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		if (opts) {
 			if (opts.action) {
-				let snackBarRef = this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
-				return snackBarRef;
+				return this.snackBar.open(opts.msg, opts.action, opts.additionalOpts);
 			} else {
-				let snackBarRef = this.snackBar.open(opts.msg, undefined, opts.additionalOpts);
-				return snackBarRef;
+				return this.snackBar.open(opts.msg, undefined, opts.additionalOpts);
 			}
 		} else {
-			this.throwError("opts", "SnackBarConfig");
+			this.throwError('opts', 'SnackBarConfig');
 		}
 	}
 	/**
@@ -157,10 +123,10 @@ export class SharedInjectable {
 					return this.snackBar.openFromComponent(opts.component);
 				}
 			} else {
-				this.throwError("opts.additionalOpts", "MatSnackBarConfig");
+				this.throwError('opts.additionalOpts', 'MatSnackBarConfig');
 			}
 		} else {
-			this.throwError("opts", "SnackBarConfig");
+			this.throwError('opts', 'SnackBarConfig');
 		}
 	}
 	/**
@@ -178,25 +144,25 @@ export class SharedInjectable {
 		if (opts) {
 			if (opts.panelClass) {
 				if (opts.backdropClass) {
-					let dialogRef = this.dialog.open(AlertDialog, {panelClass: opts.panelClass, backdropClass: opts.backdropClass});
+					let dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass, backdropClass: opts.backdropClass });
 					dialogRef.componentInstance.alertConfig = opts;
 					return dialogRef;
 				} else {
-					let dialogRef = this.dialog.open(AlertDialog, {panelClass: opts.panelClass});
+					let dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass });
 					dialogRef.componentInstance.alertConfig = opts;
 					return dialogRef;
 				}
 			} else if (opts.backdropClass) {
-				let dialogRef = this.dialog.open(AlertDialog, {backdropClass: opts.backdropClass});
+				let dialogRef = this.dialog.open(AlertDialog, { backdropClass: opts.backdropClass });
 				dialogRef.componentInstance.alertConfig = opts;
 				return dialogRef;
 			} else {
-				let dialogRef = this.dialog.open(AlertDialog);
+				const dialogRef = this.dialog.open(AlertDialog);
 				dialogRef.componentInstance.alertConfig = opts;
 				return dialogRef;
 			}
 		} else {
-			this.throwError("opts", "AlertDialogConfig");
+			this.throwError('opts', 'AlertDialogConfig');
 		}
 	}
 	/**
@@ -208,25 +174,25 @@ export class SharedInjectable {
 		if (opts) {
 			if (opts.panelClass) {
 				if (opts.backdropClass) {
-					let dialogRef = this.dialog.open(ConfirmDialog, { panelClass: opts.panelClass, backdropClass: opts.backdropClass });
+					const dialogRef = this.dialog.open(ConfirmDialog, { panelClass: opts.panelClass, backdropClass: opts.backdropClass });
 					dialogRef.componentInstance.confirmConfig = opts;
 					return dialogRef;
 				} else {
-					let dialogRef = this.dialog.open(ConfirmDialog, { panelClass: opts.panelClass });
+					const dialogRef = this.dialog.open(ConfirmDialog, { panelClass: opts.panelClass });
 					dialogRef.componentInstance.confirmConfig = opts;
 					return dialogRef;
 				}
 			} else if (opts.backdropClass) {
-				let dialogRef = this.dialog.open(ConfirmDialog, { backdropClass: opts.backdropClass });
+				const dialogRef = this.dialog.open(ConfirmDialog, { backdropClass: opts.backdropClass });
 				dialogRef.componentInstance.confirmConfig = opts;
 				return dialogRef;
 			} else {
-				let dialogRef = this.dialog.open(ConfirmDialog);
+				const dialogRef = this.dialog.open(ConfirmDialog);
 				dialogRef.componentInstance.confirmConfig = opts;
 				return dialogRef;
 			}
 		} else {
-			this.throwError("opts", "ConfirmDialogConfig");
+			this.throwError('opts', 'ConfirmDialogConfig');
 		}
 	}
 	/**
@@ -238,26 +204,26 @@ export class SharedInjectable {
 		if (opts) {
 			if (opts.panelClass) {
 				if (opts.backdropClass) {
-					let dialogRef = this.dialog.open(PromptDialog, { panelClass: opts.panelClass, backdropClass: opts.backdropClass });
+					const dialogRef = this.dialog.open(PromptDialog, { panelClass: opts.panelClass, backdropClass: opts.backdropClass });
 					dialogRef.componentInstance.promptConfig = opts;
 					return dialogRef;
 				} else {
-					let dialogRef = this.dialog.open(PromptDialog, { panelClass: opts.panelClass });
+					const dialogRef = this.dialog.open(PromptDialog, { panelClass: opts.panelClass });
 					dialogRef.componentInstance.promptConfig = opts;
 					return dialogRef;
 				}
 			} else if (opts.backdropClass) {
-				let dialogRef = this.dialog.open(PromptDialog, { backdropClass: opts.backdropClass });
+				const dialogRef = this.dialog.open(PromptDialog, { backdropClass: opts.backdropClass });
 				dialogRef.componentInstance.promptConfig = opts;
 				return dialogRef;
 			} else {
-				let dialogRef = this.dialog.open(PromptDialog);
+				const dialogRef = this.dialog.open(PromptDialog);
 				dialogRef.componentInstance.promptConfig = opts;
 				return dialogRef;
 
 			}
 		} else {
-			this.throwError("opts", "PromptDialogConfig");
+			this.throwError('opts', 'PromptDialogConfig');
 		}
 	}
 	/**
@@ -267,11 +233,11 @@ export class SharedInjectable {
 	 */
 	public openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog> {
 		if (opts) {
-			let dialogRef = this.dialog.open(SelectionDialog, { disableClose: true, panelClass: "selection-dialog" });
+			const dialogRef = this.dialog.open(SelectionDialog, { disableClose: true, panelClass: 'selection-dialog' });
 			dialogRef.componentInstance.selectionConfig = opts;
 			return dialogRef;
 		} else {
-			this.throwError("opts", "SelectionDialogConfig");
+			this.throwError('opts', 'SelectionDialogConfig');
 		}
 	}
 	/**
@@ -358,10 +324,10 @@ export class ConfirmDialog implements OnInit {
 	}
 	confirmConfig: ConfirmDialogConfig;
 	cancel() {
-		this.dialogRef.close("cancel");
+		this.dialogRef.close('cancel');
 	}
 	ok() {
-		this.dialogRef.close("ok");
+		this.dialogRef.close('ok');
 	}
 	ngOnInit() {
 		if (this.confirmConfig.disableClose) {
@@ -379,7 +345,7 @@ export class PromptDialog implements OnInit {
 	promptConfig: PromptDialogConfig;
 	input: string | number;
 	cancel() {
-		this.dialogRef.close("cancel");
+		this.dialogRef.close('cancel');
 	}
 	ok() {
 		this.dialogRef.close(this.input);
@@ -408,7 +374,7 @@ export class SelectionDialog implements OnInit, DoCheck {
 		}
 	}
 	cancel() {
-		this.dialogRef.close("cancel");
+		this.dialogRef.close('cancel');
 	}
 	ok() {
 		this.dialogRef.close(this.selection.selectedOptions.selected);
@@ -499,9 +465,9 @@ export interface PromptDialogConfig extends DialogConfig {
 	placeholder: string;
 	/**
 	 * The input type
-	 * @type {"text"|"email"|"password"|"number"}
+	 * @type {'text'|'email'|'password'|'number'}
 	 */
-	inputType?: "text" | "email" | "password" | "number";
+	inputType?: 'text' | 'email' | 'password' | 'number';
 	/**
 	 * The initial value of the input
 	 * @type {string|number}
@@ -509,9 +475,9 @@ export interface PromptDialogConfig extends DialogConfig {
 	value?: string | number;
 	/**
 	 * The color of the input
-	 * @type {"primary"|"accent"|"warn"}
+	 * @type {'primary'|'accent'|'warn'}
 	 */
-	color?: "primary" | "accent" | "warn";
+	color?: 'primary' | 'accent' | 'warn';
 }
 export interface SelectionDialogConfig extends DialogConfig {
 	/**
@@ -548,9 +514,9 @@ export interface SelectionDialogOptions {
 	value: any;
 	/**
 	 * The checkbox position of the selection list item
-	 * @type {"before"|"after"}
+	 * @type {'before'|'after'}
 	 */
-	checkboxPosition?: "before" | "after";
+	checkboxPosition?: 'before' | 'after';
 	/**
 	 * Whether the selection list item is initially selected
 	 * @type {boolean}
@@ -562,7 +528,7 @@ const SHARED_DIALOGS = [
 	ConfirmDialog,
 	PromptDialog,
 	SelectionDialog
-]
+];
 @NgModule({
 	declarations: [
 		SHARED_DIALOGS
@@ -589,4 +555,4 @@ const SHARED_DIALOGS = [
 		SHARED_DIALOGS
 	]
 })
-export class SharedModule {}
+export class SharedModule { }
