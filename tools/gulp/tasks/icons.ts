@@ -28,28 +28,31 @@ task('no-download-icons', ['modify-icons']);
  * Parameter `--verbose`: Enables verbose logging
  */
 task('download-icons', () => {
-	var showFileStorage: boolean, showFileTransfer: boolean, verboseLogging: boolean, i = process.argv.indexOf("--show-file-storage"), j = process.argv.indexOf("--show-file-transfer"), k = process.argv.indexOf("--verbose");
+	// tslint:disable-next-line:max-line-length
+	let showFileStorage: boolean, showFileTransfer: boolean, verboseLogging: boolean, i = process.argv.indexOf('--show-file-storage'), j = process.argv.indexOf('--show-file-transfer'), k = process.argv.indexOf('--verbose');
 	if (i > -1) {
-		console.log(chalk.default.yellowBright("Enabled file storage stats."));
-		console.log(chalk.default.redBright("✘ EXPERIMENTAL: This flag is currently not working of the moment. Aborting..."));
+		console.log(chalk.default.yellow('Enabled file storage stats.'));
+		console.log(chalk.default.redBright('✘ EXPERIMENTAL: This flag is currently not working of the moment. Aborting...'));
 		showFileStorage = true;
 		process.exit(0);
 	}
 	if (j > -1) {
-		console.log(chalk.default.yellowBright("Enabled file transfer stats."));
+		console.log(chalk.default.yellow('Enabled file transfer stats.'));
 		showFileTransfer = true;
 	}
 	if (k > -1) {
-		console.log(chalk.default.yellowBright("Enabled verbose logging (which will prevent the progress bar from disappearing)"));
-		console.log(chalk.default.yellowBright("⚠  WARNING: Enabling this flag will make the progress bar a bit buggy. Take care with caution!"));
+		console.log(chalk.default.yellow('Enabled verbose logging (which will prevent the progress bar from disappearing)'));
+		console.log(chalk.default.yellow('⚠  WARNING: Enabling this flag will make the progress bar a bit buggy. Take care with caution!'));
 		verboseLogging = true;
 	}
-	console.log(chalk.default.yellowBright("\nDownloading icons...\n"));
+	console.log(chalk.default.yellow('\nDownloading icons...\n'));
 	return progress(request('https://materialdesignicons.com/api/download/angularmaterial/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B'))
 		.on('progress', (state: { percent: number, size: {total: number, transferred: number} }) => {
-			let progress = ["#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#", "#"];
+			// tslint:disable-next-line:max-line-length
+			const progress = ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'];
 			progress.length = Math.ceil(state.percent * 25);
 			if (showFileTransfer) {
+				// tslint:disable-next-line:max-line-length
 				process.stdout.write(chalk.default.greenBright(`${progress.join('')} | ${Math.ceil(state.percent * 100)}% | ${prettysize(state.size.transferred)}/${prettysize(state.size.total)} transferred`));
 				if (!verboseLogging) {
 					readline.cursorTo(process.stdout, 0);
@@ -74,16 +77,16 @@ task('download-icons', () => {
  * Modifies the icons in order to work with Angular Material 2/5
  */
 task('modify-icons', () => {
-	console.log(chalk.default.yellowBright("\nModifying the icons to use <svg>...\n"));
+	console.log(chalk.default.yellow('\nModifying the icons to use <svg>...\n'));
 	return src('src/assets/mdi.svg')
-		.pipe(transform("utf8", transformIconFile));
-})
+		.pipe(transform('utf8', transformIconFile));
+});
 
 function transformIconFile(content: string): Buffer | string {
 	content = content.replace('<g', '<svg');
 	content = content.replace(SVG_PATTERN, (_match: string, head: string, id: string) =>
 		`${head} id="${id}" width="24px" height="24px" viewBox="0 0 24 24"`
-	)
+	);
 	content = content.replace('</g>', '</svg>');
 	return content;
 }
