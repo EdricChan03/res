@@ -1,5 +1,7 @@
 #!/usr/local/bin/bash
 
+CLICOLOR=1
+echo -e "\e[1m\e[33mEnabling colour...\e[0m"
 # Builds the app in production mode
 echo -e "\e[32m---------------------------"
 echo -e "| 1. Building application |"
