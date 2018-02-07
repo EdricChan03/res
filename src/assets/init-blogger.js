@@ -1,8 +1,11 @@
 console.log("%cInitialising Blogger website...", "color: black; background-color: yellow");
+console.group("Developers");
 console.log("%cHey there developer! Welcome to my website!", "color: black; background-color: yellow");
 console.log("%cDo you like looking at Inspector/ DevTools? Are you a developer? Then contribute to\n stuff that I make!", "color: black; background-color: yellow");
 console.log("%cCheck out some of my stuff:\n- StudyBuddy -> https://github.com/Chan4077/StudyBuddy\n- RSS Reader -> https://github.com/Chan4077/rss-reader\n- Chan4077.Github.io -> https://github.com/Chan4077/chan4077.github.io", "color: black; background-color: yellow");
 console.log("Thanks!");
+console.log("Execute help() to see a list of functions available.");
+console.groupEnd();
 // Initialises highlight.js
 hljs.initHighlightingOnLoad();
 // The configuration options for highlight.js
