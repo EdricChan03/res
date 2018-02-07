@@ -54,10 +54,7 @@
 			</button>
 			<mat-icon svgIcon="website-logo" class="website-logo-icon"></mat-icon>
 			<span fxFlex></span>
-			<button mat-icon-button (click)="refresh()" matTooltip="Refresh">
-				<mat-icon svgIcon="refresh"></mat-icon>
-			</button>
-			<button mat-icon-button [matMenuTriggerFor]="moreMenu">
+			<button mat-icon-button [matMenuTriggerFor]="moreMenu" matTooltip="More options">
 				<mat-icon svgIcon="dots-vertical"></mat-icon>
 			</button>
 			<mat-menu #moreMenu="matMenu">

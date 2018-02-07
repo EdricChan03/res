@@ -4,7 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
-    selector: 'app-root',
+	selector: 'app-root',
 	templateUrl: './app.component.html',
 	animations: [
 		trigger(
@@ -22,7 +22,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 	]
 })
 export class AppComponent {
-	constructor(private shared: SharedInjectable){
+	constructor(private shared: SharedInjectable) {
 	}
 	@ViewChild('sidenav') sidenav: MatSidenav;
 	get isMobile() {
@@ -39,7 +39,7 @@ export class AppComponent {
 			return false;
 		}
 	}
- 	isScrolled(): boolean {
+	isScrolled(): boolean {
 		if (document.getElementById('sidenav-content').scrollTop > 20) {
 			return true;
 		} else {
@@ -49,19 +49,9 @@ export class AppComponent {
 	getTitle() {
 		return this.shared.title;
 	}
-    scrollToTop() {
-        document.getElementById('top').scrollIntoView({
+	scrollToTop() {
+		document.getElementById('top').scrollIntoView({
 			behavior: 'smooth'
-        });
-	}
-	refresh() {
-		let dialogRef = this.shared.openConfirmDialog({msg: "Are you sure you want to refresh? All unsaved changes will be lost!", title: "Confirmation", ok: "Refresh"});
-		dialogRef.afterClosed().subscribe(result => {
-			if (result) {
-				if (result == 'ok') {
-					window.location.reload(true);
-				}
-			}
-		})
+		});
 	}
 }
