@@ -17,7 +17,12 @@ import { MatCommonModule } from '@angular/material/core';
 @Injectable()
 export class SharedInjectable {
 	private _title: string = '';
-	constructor(private snackBar: MatSnackBar, private dialog: MatDialog, private documentTitle: Title, private breakpointObserver: BreakpointObserver) { }
+	constructor(
+		private snackBar: MatSnackBar,
+		private dialog: MatDialog,
+		private documentTitle: Title,
+		private breakpointObserver: BreakpointObserver
+	) { }
 	/**
 	 * Sends feedback
 	 * @param {string} feedback The initial value for the feedback
@@ -299,7 +304,16 @@ export class SharedInjectable {
 
 @Component({
 	selector: 'alert-dialog',
-	templateUrl: './partials/alertdialog.shared.html'
+	template: `
+	<h2 matDialogTitle>{{alertConfig.title ? alertConfig.title : 'Alert'}}</h2>
+	<mat-dialog-content fxLayout="column" class="mat-typography">
+		<p class="mat-body" *ngIf="!alertConfig.isHtml">{{alertConfig.msg}}</p>
+		<span *ngIf="alertConfig.isHtml" [innerHTML]="alertConfig.msg"></span>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button color="primary" (click)="close()">{{alertConfig.ok ? alertConfig.ok : 'Dismiss'}}</button>
+	</mat-dialog-actions>
+	`
 })
 export class AlertDialog implements OnInit {
 	constructor(private dialogRef: MatDialogRef<AlertDialog>) {
@@ -316,12 +330,20 @@ export class AlertDialog implements OnInit {
 }
 @Component({
 	selector: 'confirm-dialog',
-	templateUrl: './partials/confirmdialog.shared.html'
+	template: `
+	<h2 matDialogTitle>{{confirmConfig.title ? confirmConfig.title : 'Confirm'}}</h2>
+	<mat-dialog-content fxLayout="column" class="mat-typography">
+		<p class="mat-body" *ngIf="!confirmConfig.isHtml">{{confirmConfig.msg}}</p>
+		<span *ngIf="confirmConfig.isHtml" [innerHTML]="confirmConfig.msg"></span>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button (click)="cancel()" color="primary">{{confirmConfig.cancel ? confirmConfig.cancel : 'Cancel'}}</button>
+		<button mat-button (click)="ok()" color="primary">{{confirmConfig.ok ? confirmConfig.ok : 'OK'}}</button>
+	</mat-dialog-actions>
+	`
 })
 export class ConfirmDialog implements OnInit {
-	constructor(private dialogRef: MatDialogRef<ConfirmDialog>) {
-
-	}
+	constructor(private dialogRef: MatDialogRef<ConfirmDialog>) {}
 	confirmConfig: ConfirmDialogConfig;
 	cancel() {
 		this.dialogRef.close('cancel');
@@ -337,7 +359,27 @@ export class ConfirmDialog implements OnInit {
 }
 @Component({
 	selector: 'prompt-dialog',
-	templateUrl: './partials/promptdialog.shared.html'
+	template: `
+	<h2 matDialogTitle>{{promptConfig.title ? promptConfig.title : 'Prompt'}}</h2>
+	<mat-dialog-content fxLayout="column" class="mat-typography">
+		<p class="mat-body" *ngIf="!promptConfig.isHtml">{{promptConfig.msg}}</p>
+		<span *ngIf="promptConfig.isHtml" [innerHTML]="promptConfig.msg"></span>
+		<form #form="ngForm">
+			<mat-form-field color="{{promptConfig.color ? promptConfig.color : 'primary'}}" style="width:100%" *ngIf="!promptConfig.textarea">
+				<input matInput [(ngModel)]="input" placeholder="{{promptConfig.placeholder}}" type="{{promptConfig.inputType ? promptConfig.inputType : 'text'}}" required name="input">
+				<mat-error>This is required.</mat-error>
+			</mat-form-field>
+			<mat-form-field color="{{promptConfig.color ? promptConfig.color : 'primary'}}" style="width:100%" *ngIf="promptConfig.textarea">
+				<textarea matInput [(ngModel)]="input" placeholder="{{promptConfig.placeholder}}" required name="textarea"></textarea>
+				<mat-error>This is required.</mat-error>
+			</mat-form-field>
+		</form>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button (click)="cancel()" color="primary">{{promptConfig.cancel ? promptConfig.cancel : 'Cancel'}}</button>
+		<button mat-button (click)="ok()" color="primary" [disabled]="form.invalid">{{promptConfig.ok ? promptConfig.ok : 'OK'}}</button>
+	</mat-dialog-actions>
+	`
 })
 export class PromptDialog implements OnInit {
 	constructor(private dialogRef: MatDialogRef<PromptDialog>) {
@@ -361,7 +403,20 @@ export class PromptDialog implements OnInit {
 }
 @Component({
 	selector: 'selection-dialog',
-	templateUrl: './partials/selectiondialog.shared.html'
+	template: `
+	<h2 matDialogTitle>{{selectionConfig.title ? selectionConfig.title : 'Select options from the list'}}</h2>
+	<mat-dialog-content fxLayout="column" class="mat-typography">
+		<mat-selection-list #selection>
+			<mat-list-option *ngFor="let option of selectionConfig.options" [disabled]="option.disabled" [value]="option.value" [checkboxPosition]="option.checkboxPosition ? option.checkboxPosition : 'before'" [selected]="option.selected">
+				{{option.content}}
+			</mat-list-option>
+		</mat-selection-list>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button mat-button color="primary" (click)="cancel()">{{selectionConfig.cancel ? selectionConfig.cancel : 'Cancel'}}</button>
+		<button mat-button color="primary" (click)="ok()" [disabled]="selection.selectedOptions.selected.length < 1">{{selectionConfig.ok ? selectionConfig.ok : 'OK'}}</button>
+	</mat-dialog-actions>
+	`
 })
 export class SelectionDialog implements OnInit, DoCheck {
 	@ViewChild('selection') selection: MatSelectionList;

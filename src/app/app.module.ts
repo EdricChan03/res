@@ -1,4 +1,4 @@
-import { SharedModule } from './shared';
+import { SharedModule } from './shared.service';
 import { AppRouting } from './app.routing';
 import { CodeViewerComponent } from './code-viewer/code-viewer.component';
 import { BrowserModule } from '@angular/platform-browser';

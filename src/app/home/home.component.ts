@@ -1,4 +1,4 @@
-import { SharedInjectable } from '../shared';
+import { SharedInjectable } from '../shared.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

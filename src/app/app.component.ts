@@ -1,4 +1,4 @@
-import { SharedInjectable } from './shared';
+import { SharedInjectable } from './shared.service';
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { trigger, style, animate, transition } from '@angular/animations';

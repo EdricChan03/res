@@ -1,4 +1,4 @@
-import { SharedInjectable } from '../shared';
+import { SharedInjectable } from '../shared.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
