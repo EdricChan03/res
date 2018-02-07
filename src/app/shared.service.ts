@@ -16,7 +16,7 @@ import { MatCommonModule } from '@angular/material/core';
 
 @Injectable()
 export class SharedInjectable {
-	private _title: string = '';
+	private _title = '';
 	constructor(
 		private snackBar: MatSnackBar,
 		private dialog: MatDialog,
@@ -29,7 +29,8 @@ export class SharedInjectable {
 	 * @returns The dialog ref of the dialog
 	 */
 	public sendFeedbackWithRef(feedback?: string): MatDialogRef<PromptDialog> {
-		let tempData: PromptDialogConfig = { title: 'Send Feedback', msg: 'What\'s the issue? Please report it in the textbox below:', placeholder: 'Feedback', textarea: true, ok: 'Send Feedback' };
+		// tslint:disable-next-line:max-line-length
+		const tempData: PromptDialogConfig = { title: 'Send Feedback', msg: 'What\'s the issue? Please report it in the textbox below:', placeholder: 'Feedback', textarea: true, ok: 'Send Feedback' };
 		if (feedback) {
 			tempData.value = feedback;
 		}
@@ -46,17 +47,18 @@ export class SharedInjectable {
 	 * @private
 	 */
 	private sendFeedback(feedback?: string, handleVia?: 'twitter' | 'facebook' | 'github') {
-		let tempData: PromptDialogConfig = { title: 'Send Feedback', msg: 'What\'s the issue? Please report it in the textbox below:', placeholder: 'Feedback', textarea: true, ok: 'Send Feedback' };
-		let dialogRef = this.openPromptDialog(tempData);
+		// tslint:disable-next-line:max-line-length
+		const tempData: PromptDialogConfig = { title: 'Send Feedback', msg: 'What\'s the issue? Please report it in the textbox below:', placeholder: 'Feedback', textarea: true, ok: 'Send Feedback' };
+		const dialogRef = this.openPromptDialog(tempData);
 		dialogRef.afterClosed().subscribe(result => {
 			if (result) {
-				if (result == 'cancel') {
+				if (result === 'cancel') {
 					// User cancelled
 				} else {
 					if (handleVia) {
-						if (handleVia == 'twitter') {
+						if (handleVia === 'twitter') {
 							// Twitter
-						} else if (handleVia == 'facebook') {
+						} else if (handleVia === 'facebook') {
 							// Facebook
 						} else {
 							/*
@@ -69,7 +71,7 @@ export class SharedInjectable {
 					}
 				}
 			}
-		})
+		});
 	}
 	/**
 	 * Whether the current device is mobile
@@ -149,16 +151,16 @@ export class SharedInjectable {
 		if (opts) {
 			if (opts.panelClass) {
 				if (opts.backdropClass) {
-					let dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass, backdropClass: opts.backdropClass });
+					const dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass, backdropClass: opts.backdropClass });
 					dialogRef.componentInstance.alertConfig = opts;
 					return dialogRef;
 				} else {
-					let dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass });
+					const dialogRef = this.dialog.open(AlertDialog, { panelClass: opts.panelClass });
 					dialogRef.componentInstance.alertConfig = opts;
 					return dialogRef;
 				}
 			} else if (opts.backdropClass) {
-				let dialogRef = this.dialog.open(AlertDialog, { backdropClass: opts.backdropClass });
+				const dialogRef = this.dialog.open(AlertDialog, { backdropClass: opts.backdropClass });
 				dialogRef.componentInstance.alertConfig = opts;
 				return dialogRef;
 			} else {
@@ -280,6 +282,7 @@ export class SharedInjectable {
 	 * @private
 	 */
 	private throwError(variable: string, type: string) {
+		// tslint:disable-next-line:max-line-length
 		throw new Error(`${variable} was not specified. Please ensure that the ${variable} property is specified and that it is of type ${type}.`);
 	}
 	/**

@@ -6,7 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 	templateUrl: './code-snippet.component.html'
 })
 export class CodeSnippetComponent {
-	constructor(private dialogRef: MatDialogRef<CodeSnippetComponent>){}
+	constructor(private dialogRef: MatDialogRef<CodeSnippetComponent>) { }
 	selectedIcon: string;
 	close() {
 		this.dialogRef.close();

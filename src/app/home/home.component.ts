@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
 	constructor(private shared: SharedInjectable) {
-		this.shared.title = "Home";
+		this.shared.title = 'Home';
 	}
 
 	ngOnInit() {

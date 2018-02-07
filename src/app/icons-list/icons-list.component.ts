@@ -64,7 +64,7 @@ export class IconsListComponent implements OnInit {
 							this.shared.openSnackBar({ msg: 'Your feedback has been sent!', additionalOpts: { duration: 6000, horizontalPosition: 'start', extraClasses: ['mat-elevation-z2'] } });
 						}
 					}
-				})
+				});
 			});
 		});
 	}

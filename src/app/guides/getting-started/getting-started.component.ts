@@ -10,7 +10,7 @@ export class GettingStartedComponent implements OnInit {
 	constructor(private shared: SharedInjectable) { }
 
 	ngOnInit() {
-		this.shared.title = "Getting Started";
+		this.shared.title = 'Getting Started';
 	}
 
 }

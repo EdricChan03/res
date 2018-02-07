@@ -40,5 +40,4 @@ import { HomeComponent } from './home/home.component';
 		CodeSnippetComponent
 	]
 })
-export class AppModule {
-}
+export class AppModule {}
