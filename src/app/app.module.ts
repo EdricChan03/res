@@ -15,6 +15,7 @@ import { GettingStartedComponent } from './guides/getting-started/getting-starte
 import { IconsListComponent } from './icons-list/icons-list.component';
 import { CodeSnippetComponent } from './code-snippet/code-snippet.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
 	declarations: [
@@ -23,7 +24,8 @@ import { HomeComponent } from './home/home.component';
 		GettingStartedComponent,
 		IconsListComponent,
 		CodeSnippetComponent,
-		HomeComponent
+		HomeComponent,
+		AboutComponent
 	],
 	imports: [
 		BrowserModule,

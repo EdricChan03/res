@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { IconsListComponent } from './icons-list/icons-list.component';
+import { AboutComponent } from './about/about.component';
 
 const APP_ROUTES: Routes = [
 	{ path: 'home', component: HomeComponent },
@@ -13,6 +14,7 @@ const APP_ROUTES: Routes = [
 		]
 	},
 	{ path: 'guides', redirectTo: '/guides/getting-started', pathMatch: 'full' },
+	{ path: 'about', component: AboutComponent },
 	{ path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
