@@ -185,3 +185,15 @@ code {
     position: relative;
     z-index: 2;
 }
+
+// Styles for button
+.mat-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-raised-button,
+.mat-simple-snackbar-action {
+	text-transform: uppercase;
+}
+.github-card {
+	margin: 8px;
+}
