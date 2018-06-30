@@ -51,7 +51,7 @@ export class IconsListComponent implements OnInit {
 			this.icons = result;
 		}, (error: Error) => {
 			// tslint:disable-next-line:max-line-length
-			const snackBarRef = this.snackbar.open(`Error: ${error.message}`, 'Send Feedback', { duration: 8000, horizontalPosition: 'start', extraClasses: ['mat-elevation-z2'] });
+			const snackBarRef = this.snackbar.open(`Error: ${error.message}`, 'Send Feedback', { duration: 8000, horizontalPosition: 'start', panelClass: ['mat-elevation-z2'] });
 			snackBarRef.onAction().subscribe(() => {
 				const dialogRef = this.shared.sendFeedbackWithRef(error.message);
 				dialogRef.afterClosed().subscribe(result => {
@@ -61,7 +61,7 @@ export class IconsListComponent implements OnInit {
 						} else {
 							// Submit feedback
 							// tslint:disable-next-line:max-line-length
-							this.shared.openSnackBar({ msg: 'Your feedback has been sent!', additionalOpts: { duration: 6000, horizontalPosition: 'start', extraClasses: ['mat-elevation-z2'] } });
+							this.shared.openSnackBar({ msg: 'Your feedback has been sent!', additionalOpts: { duration: 6000, horizontalPosition: 'start', panelClass: ['mat-elevation-z2'] } });
 						}
 					}
 				});

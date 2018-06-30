@@ -42,7 +42,7 @@ task('download-icons', () => {
 	}
 	if (k > -1) {
 		console.log(chalk.default.yellow('Enabled verbose logging (which will prevent the progress bar from disappearing)'));
-		console.log(chalk.default.yellow('⚠  WARNING: Enabling this flag will make the progress bar a bit buggy. Take care with caution!'));
+		console.log(chalk.default.yellow('⚠ WARNING: Enabling this flag will make the progress bar a bit buggy. Take care with caution!'));
 		verboseLogging = true;
 	}
 	console.log(chalk.default.yellow('\nDownloading icons...\n'));
