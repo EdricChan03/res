@@ -29,39 +29,25 @@ task('no-download-icons', ['modify-icons']);
  */
 task('download-icons', () => {
 	// tslint:disable-next-line:max-line-length
-	let showFileStorage: boolean, showFileTransfer: boolean, verboseLogging: boolean, i = process.argv.indexOf('--show-file-storage'), j = process.argv.indexOf('--show-file-transfer'), k = process.argv.indexOf('--verbose');
+	let showFileTransfer: boolean;
+	const i = process.argv.indexOf('--show-file-transfer');
 	if (i > -1) {
-		console.log(chalk.default.yellow('Enabled file storage stats.'));
-		console.log(chalk.default.redBright('✘ EXPERIMENTAL: This flag is currently not working of the moment. Aborting...'));
-		showFileStorage = true;
-		process.exit(0);
-	}
-	if (j > -1) {
-		console.log(chalk.default.yellow('Enabled file transfer stats.'));
+		console.log(chalk.default.yellow('File transfer stats have been enabled.'));
 		showFileTransfer = true;
 	}
-	if (k > -1) {
-		console.log(chalk.default.yellow('Enabled verbose logging (which will prevent the progress bar from disappearing)'));
-		console.log(chalk.default.yellow('⚠ WARNING: Enabling this flag will make the progress bar a bit buggy. Take care with caution!'));
-		verboseLogging = true;
-	}
-	console.log(chalk.default.yellow('\nDownloading icons...\n'));
+	console.log(chalk.default.yellow('Downloading icons from materialdesignicons.com...'));
 	return progress(request('https://materialdesignicons.com/api/download/angularmaterial/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B'))
-		.on('progress', (state: { percent: number, size: {total: number, transferred: number} }) => {
+		.on('progress', (state: { percent: number, size: { total: number, transferred: number } }) => {
 			// tslint:disable-next-line:max-line-length
 			const progress = ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'];
 			progress.length = Math.ceil(state.percent * 25);
 			if (showFileTransfer) {
 				// tslint:disable-next-line:max-line-length
-				process.stdout.write(chalk.default.greenBright(`${progress.join('')} | ${Math.ceil(state.percent * 100)}% | ${prettysize(state.size.transferred)}/${prettysize(state.size.total)} transferred`));
-				if (!verboseLogging) {
-					readline.cursorTo(process.stdout, 0);
-				}
+				process.stdout.write(chalk.default.blueBright(`${progress.join('')} | ${Math.ceil(state.percent * 100)}% | ${prettysize(state.size.transferred)}/${prettysize(state.size.total)} transferred`));
+				readline.cursorTo(process.stdout, 0);
 			} else {
-				process.stdout.write(chalk.default.greenBright(`${progress.join('')} | ${Math.ceil(state.percent * 100)}%`));
-				if (!verboseLogging) {
-					readline.cursorTo(process.stdout, 0);
-				}
+				process.stdout.write(chalk.default.blueBright(`${progress.join('')} | ${Math.ceil(state.percent * 100)}%`));
+				readline.cursorTo(process.stdout, 0);
 			}
 		})
 		.on('error', (err: string) => {
@@ -77,7 +63,7 @@ task('download-icons', () => {
  * Modifies the icons in order to work with Angular Material 2/5
  */
 task('modify-icons', () => {
-	console.log(chalk.default.yellow('\nModifying the icons to use <svg>...\n'));
+	console.log(chalk.default.yellow('Modifying the icons to use <svg>...'));
 	return src('src/assets/mdi.svg')
 		.pipe(transform('utf8', transformIconFile));
 });
