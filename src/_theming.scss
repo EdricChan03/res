@@ -1,0 +1,58 @@
+@import '~@angular/material/theming';
+@mixin tables-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $is-dark-theme: map-get($theme, is-dark);
+    $tableBorderOpacity: if($is-dark-theme, 0.08, 0.03);
+    table.app-table {
+        color: mat-color($foreground, text);
+        border-collapse: collapse;
+        border-radius: 2px;
+        border-spacing: 0;
+        margin: 0 0 32px 0;
+        width: 100%;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
+        th {
+            background: mat-color($background, app-bar);
+            font-weight: 400;
+            max-width: 100px;
+            padding: 13px 32px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid rgba(mat-color($foreground, secondary-text), $tableBorderOpacity);
+            font-weight: 400;
+            padding: 8px 16px;
+        }
+    }
+}
+
+@mixin app-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+    $is-dark-theme: map-get($theme, is-dark); // $tableBorderOpacity: if($is-dark-theme, 0.08, 0.03);
+    @include tables-theme($theme);
+    .icon-selected,
+    .icon-square:hover {
+        background-color: mat-color($primary);
+        color: $white-87-opacity;
+    }
+    .active-link {
+        // Since it's a bit hard to actually see the text in the dark theme, it'll use the accent color if it's dark and primary if it's not. Same applies for mat-icon
+        color: if($is-dark-theme, mat-color($accent), mat-color($primary)) !important;
+        mat-icon {
+            color: if($is-dark-theme, mat-color($accent), mat-color($primary)) !important;
+		}
+		// Note: These colors are based on the Android sidenav selection state
+        background-color: if($is-dark-theme, #595959, #DCDCDC) !important;
+	}
+	.page-title {
+		background-color: mat-color($primary);
+	}
+}
