@@ -71,8 +71,8 @@ export class IconsListComponent implements OnInit {
 		// Prevent the browser's context menu from showing
 		event.preventDefault();
 		console.log(event);
-		spanHtml.style.left = `${event.screenX}px`;
-		spanHtml.style.top = `${event.screenY}px`;
+		spanHtml.style.left = `${event.clientX}px`;
+		spanHtml.style.top = `${event.clientY}px`;
 		menuTrigger.openMenu();
 	}
 	search() {
