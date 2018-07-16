@@ -12,11 +12,6 @@
 	font-size: 14px;
 }
 
-.hljs>*::selection,
-.hljs-section {
-	background-color: #D6EDEA;
-}
-
 .hljs-comment {
 	color: #B0BEC5;
 	font-style: italic;
