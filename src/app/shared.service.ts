@@ -13,16 +13,73 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Title, SafeHtml } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { MatCommonModule } from '@angular/material/core';
+import { Subject } from 'rxjs';
+
 
 @Injectable()
-export class SharedInjectable {
+export class SharedService {
 	private _title = '';
+	/**
+	 * Keydown events to the page
+	 */
+	keydownEvents = new Subject<KeyboardEvent>();
+	/**
+	 * Keydown events as an observable
+	 */
+	keydownEvents$ = this.keydownEvents.asObservable();
+	/**
+	 * Keyup events to the page
+	 */
+	keyupEvents = new Subject<KeyboardEvent>();
+	/**
+	 * Keyup events as an observable
+	 */
+	keyupEvents$ = this.keyupEvents.asObservable();
+	/**
+	 * Keypress events to the page
+	 */
+	keypressEvents = new Subject<KeyboardEvent>();
+	/**
+	 * Keypress events as an observable
+	 */
+	keypressEvents$ = this.keypressEvents.asObservable();
+	/**
+	 * Key events to the page
+	 */
+	keyEvents = new Subject<KeyboardEvent>();
+	/**
+	 * Key events as an observable
+	 */
+	keyEvents$ = this.keyEvents.asObservable();
+	/**
+	 * Keydown & keyup events to the page
+	 */
+	keyDownUpEvents = new Subject<KeyboardEvent>();
+	/**
+	 * Keydown & keyup events as an observable
+	 */
+	keyDownUpEvents$ = this.keyDownUpEvents.asObservable();
 	constructor(
 		private snackBar: MatSnackBar,
 		private dialog: MatDialog,
 		private documentTitle: Title,
 		private breakpointObserver: BreakpointObserver
-	) { }
+	) {
+		window.addEventListener('keydown', (event) => {
+			this.keydownEvents.next(event);
+			this.keyEvents.next(event);
+			this.keyDownUpEvents.next(event);
+		});
+		window.addEventListener('keyup', (event) => {
+			this.keyupEvents.next(event);
+			this.keyEvents.next(event);
+			this.keyDownUpEvents.next(event);
+		});
+		window.addEventListener('keypress', (event) => {
+			this.keypressEvents.next(event);
+			this.keyEvents.next(event);
+		});
+	}
 	/**
 	 * Sends feedback
 	 * @param {string} feedback The initial value for the feedback
@@ -369,7 +426,8 @@ export class ConfirmDialog implements OnInit {
 		<span *ngIf="promptConfig.isHtml" [innerHTML]="promptConfig.msg"></span>
 		<form #form="ngForm">
 			<mat-form-field color="{{promptConfig.color ? promptConfig.color : 'primary'}}" style="width:100%" *ngIf="!promptConfig.textarea">
-				<input matInput [(ngModel)]="input" placeholder="{{promptConfig.placeholder}}" type="{{promptConfig.inputType ? promptConfig.inputType : 'text'}}" required name="input">
+				<input matInput [(ngModel)]="input"
+				placeholder="{{promptConfig.placeholder}}" type="{{promptConfig.inputType ? promptConfig.inputType : 'text'}}" required name="input">
 				<mat-error>This is required.</mat-error>
 			</mat-form-field>
 			<mat-form-field color="{{promptConfig.color ? promptConfig.color : 'primary'}}" style="width:100%" *ngIf="promptConfig.textarea">
@@ -410,14 +468,17 @@ export class PromptDialog implements OnInit {
 	<h2 matDialogTitle>{{selectionConfig.title ? selectionConfig.title : 'Select options from the list'}}</h2>
 	<mat-dialog-content fxLayout="column" class="mat-typography">
 		<mat-selection-list #selection>
-			<mat-list-option *ngFor="let option of selectionConfig.options" [disabled]="option.disabled" [value]="option.value" [checkboxPosition]="option.checkboxPosition ? option.checkboxPosition : 'before'" [selected]="option.selected">
+			<mat-list-option *ngFor="let option of selectionConfig.options"
+			[disabled]="option.disabled" [value]="option.value"
+			[checkboxPosition]="option.checkboxPosition ? option.checkboxPosition : 'before'" [selected]="option.selected">
 				{{option.content}}
 			</mat-list-option>
 		</mat-selection-list>
 	</mat-dialog-content>
 	<mat-dialog-actions align="end">
 		<button mat-button color="primary" (click)="cancel()">{{selectionConfig.cancel ? selectionConfig.cancel : 'Cancel'}}</button>
-		<button mat-button color="primary" (click)="ok()" [disabled]="selection.selectedOptions.selected.length < 1">{{selectionConfig.ok ? selectionConfig.ok : 'OK'}}</button>
+		<button mat-button color="primary" (click)="ok()"
+		[disabled]="selection.selectedOptions.selected.length < 1">{{selectionConfig.ok ? selectionConfig.ok : 'OK'}}</button>
 	</mat-dialog-actions>
 	`
 })
@@ -595,7 +656,7 @@ const SHARED_DIALOGS = [
 		SHARED_DIALOGS
 	],
 	providers: [
-		SharedInjectable
+		SharedService
 	],
 	imports: [
 		CommonModule,
