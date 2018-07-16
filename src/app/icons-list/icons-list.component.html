@@ -35,7 +35,7 @@
 	<div class="icon-square" *ngFor="let icon of icons | async" [matTooltip]="icon.name" role="button" (click)="selected(icon.name)"
 	 (contextmenu)="onContextMenu($event, icon, contextMenuTrigger, spanContext)" [ngClass]="{'icon-selected mat-elevation-z3': icon.name == selectedIcon}">
 		<mat-icon [svgIcon]="icon.name"></mat-icon>
-		<span [matMenuTriggerFor]="contextMenu" #contextMenuTrigger="matMenuTrigger" #spanContext style="position: relative"></span>
+		<span [matMenuTriggerFor]="contextMenu" #contextMenuTrigger="matMenuTrigger" #spanContext style="position: fixed"></span>
 		<mat-menu #contextMenu="matMenu">
 			<button mat-menu-item (click)="showIconInfo(icon)">
 				<mat-icon svgIcon="information"></mat-icon>
@@ -52,7 +52,7 @@
 	<div class="icon-square" *ngFor="let icon of filteredIcons | async" [matTooltip]="icon.name" role="button" (click)="selected(icon.name)"
 	 (contextmenu)="onContextMenu($event, icon, contextMenuTrigger, spanContext)" [ngClass]="{'icon-selected mat-elevation-z3': icon.name == selectedIcon}">
 		<mat-icon [svgIcon]="icon.name"></mat-icon>
-		<span [matMenuTriggerFor]="contextMenu" #contextMenuTrigger="matMenuTrigger" #spanContext style="position: relative"></span>
+		<span [matMenuTriggerFor]="contextMenu" #contextMenuTrigger="matMenuTrigger" #spanContext style="position: fixed"></span>
 		<mat-menu #contextMenu="matMenu">
 			<button mat-menu-item (click)="showIconInfo(icon)">
 				<mat-icon svgIcon="information"></mat-icon>
