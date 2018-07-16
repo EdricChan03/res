@@ -1,13 +1,14 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, AfterViewInit, ElementRef, ViewChild, Input, DoCheck } from '@angular/core';
 import * as hljs from 'highlight.js';
+
 @Component({
 	selector: 'code-viewer',
 	templateUrl: './code-viewer.component.html'
 })
 
 export class CodeViewerComponent implements AfterViewInit, DoCheck {
-	@ViewChild('code') content: ElementRef;
+	@ViewChild('code') content: ElementRef<HTMLElement>;
 	/**
 	 * Sets the language of the code block
 	 * @type {string}
@@ -50,16 +51,11 @@ export class CodeViewerComponent implements AfterViewInit, DoCheck {
 		// Checks if the file name input is stated
 		if (this.fileName) {
 			// Yes, the file input is stated
-			hljs.highlightBlock(this.content.nativeElement.childNodes[6]);
-			this.originalCode = this.content.nativeElement.childNodes[6].innerText;
-		} else if (this.content.nativeElement.childNodes.length >= 6) {
-			// No, the file input is not stated or is invalid
-			// console.log(this.content.nativeElement.childNodes);
-			hljs.highlightBlock(this.content.nativeElement.childNodes[5]);
-			this.originalCode = this.content.nativeElement.childNodes[5].innerText;
+			hljs.highlightBlock(this.content.nativeElement.childNodes[3].childNodes[0]);
+			this.originalCode = this.content.nativeElement.childNodes[3].childNodes[0].textContent;
 		} else {
-			hljs.highlightBlock(this.content.nativeElement.childNodes[3]);
-			this.originalCode = this.content.nativeElement.childNodes[3].innerText;
+			hljs.highlightBlock(this.content.nativeElement.childNodes[2].childNodes[0]);
+			this.originalCode = this.content.nativeElement.childNodes[2].childNodes[0].textContent;
 		}
 	}
 }

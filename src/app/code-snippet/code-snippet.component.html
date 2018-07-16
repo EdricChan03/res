@@ -1,13 +1,25 @@
 <h2 matDialogTitle>Code snippet</h2>
 <mat-dialog-content>
-	Copy this code snippet by clicking on the "Copy code" button on the top right of the code block.
-	<h3>Angular Material</h3>
-	<code-viewer language="html">&lt;mat-icon svgIcon="{{selectedIcon}}"&gt;&lt;/mat-icon&gt;</code-viewer>
-	<h3>AngularJS Material</h3>
-	<code-viewer language="html">&lt;md-icon md-svg-icon="{{selectedIcon}}"&gt;&lt;/md-icon&gt;</code-viewer>
+	<p>Copy this code snippet by clicking on the "Copy code" button on the top right of the code block.</p>
+	<mat-accordion style="display: block; padding-bottom: 10px">
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title>Angular Material</mat-panel-title>
+			</mat-expansion-panel-header>
+			<code-viewer language="html">&lt;mat-icon svgIcon="{{selectedIcon}}"&gt;&lt;/mat-icon&gt;</code-viewer>
+		</mat-expansion-panel>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title>AngularJS Material</mat-panel-title>
+			</mat-expansion-panel-header>
+			<code-viewer language="html">&lt;md-icon md-svg-icon="{{selectedIcon}}"&gt;&lt;/md-icon&gt;</code-viewer>
+		</mat-expansion-panel>
+	</mat-accordion>
 </mat-dialog-content>
 <mat-dialog-actions>
-	<a mat-icon-button href="https://materialdesignicons.com/getting-started" target="_blank" matTooltip="MDI Getting Started"><mat-icon svgIcon="vector-square"></mat-icon></a>
+	<a mat-icon-button href="https://materialdesignicons.com/getting-started" target="_blank" matTooltip="MDI Getting Started">
+		<mat-icon svgIcon="vector-square"></mat-icon>
+	</a>
 	<span fxFlex></span>
 	<button mat-button color="primary" (click)="close()">Dismiss</button>
 </mat-dialog-actions>
