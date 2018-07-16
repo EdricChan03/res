@@ -1,11 +1,16 @@
-import { SharedInjectable } from '../shared.service';
+import { SharedService } from '../shared.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { CodeSnippetComponent } from '../code-snippet/code-snippet.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { IconInfoDialogComponent } from '../dialogs/icon-info-dialog/icon-info-dialog.component';
+import { Contributor, Icon, SearchCategory } from '../interfaces';
 @Component({
 	selector: 'app-icons-list',
 	templateUrl: './icons-list.component.html',
@@ -25,16 +30,24 @@ import { MatDialog } from '@angular/material/dialog';
 	]
 })
 export class IconsListComponent implements OnInit {
-	icons: Icon[];
-	filteredIcons: Icon[];
+	icons: Observable<Icon[]>;
+	filteredIcons: Observable<Icon[]>;
+	contributors: Observable<Contributor[]>;
 	selectedIcon: string;
 	searchField: string;
-	category: 'name' | 'tag' | 'alias' | 'contributor';
+	category: 'name' | 'tag' | 'alias' | 'author';
 	categories: string[];
 	multipleCategories: boolean;
 	iconSelected: boolean;
 	showSearch = false;
-	constructor(private http: HttpClient, private snackbar: MatSnackBar, private shared: SharedInjectable, private dialog: MatDialog) { }
+	searchForm: FormGroup;
+	constructor(
+		private http: HttpClient,
+		private snackbar: MatSnackBar,
+		private shared: SharedService,
+		private dialog: MatDialog,
+		private fb: FormBuilder
+	) { }
 	get isMobile() {
 		return this.shared.isMobile();
 	}
@@ -46,92 +59,50 @@ export class IconsListComponent implements OnInit {
 		}
 	}
 	ngOnInit() {
-		this.shared.title = 'Home';
-		this.http.get<Icon[]>('https://materialdesignicons.com/cdn/2.1.19/meta.json', { responseType: 'json' }).subscribe(result => {
-			this.icons = result;
-		}, (error: Error) => {
-			// tslint:disable-next-line:max-line-length
-			const snackBarRef = this.snackbar.open(`Error: ${error.message}`, 'Send Feedback', { duration: 8000, horizontalPosition: 'start', panelClass: ['mat-elevation-z2'] });
-			snackBarRef.onAction().subscribe(() => {
-				const dialogRef = this.shared.sendFeedbackWithRef(error.message);
-				dialogRef.afterClosed().subscribe(result => {
-					if (result) {
-						if (result === 'cancel') {
-							// Catch cancel click
-						} else {
-							// Submit feedback
-							// tslint:disable-next-line:max-line-length
-							this.shared.openSnackBar({ msg: 'Your feedback has been sent!', additionalOpts: { duration: 6000, horizontalPosition: 'start', panelClass: ['mat-elevation-z2'] } });
-						}
-					}
-				});
-			});
+		this.searchForm = this.fb.group({
+			query: ['', Validators.required],
+			category: ['', Validators.required]
 		});
+		this.shared.title = 'Home';
+		this.icons = this.http.get<Icon[]>('https://materialdesignicons.com/cdn/2.4.85/meta.json');
+		this.contributors = this.http.get<Contributor[]>('https://materialdesignicons.com/api/contributors/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B');
+	}
+	onContextMenu(event: MouseEvent, icon: Icon, menuTrigger: MatMenuTrigger, spanHtml: HTMLSpanElement) {
+		// Prevent the browser's context menu from showing
+		event.preventDefault();
+		console.log(event);
+		spanHtml.style.left = `-${event.offsetX}px`;
+		spanHtml.style.top = `-${event.offsetY}px`;
+		menuTrigger.openMenu();
 	}
 	search() {
-		if (this.category) {
-			// User selected a category
-			if (this.category === 'contributor') {
-				this.filteredIcons = this.icons.filter((icon) => {
-					if (icon.contributor.indexOf(this.searchField.toLowerCase()) > -1) {
-						return true;
-					} else {
-						return false;
-					}
-				});
-			} else if (this.category === 'tag') {
-				this.filteredIcons = this.icons.filter((icon) => {
-					icon.tags.filter((tag) => {
-						if (tag.indexOf(this.searchField.toLowerCase()) > -1) {
-							return true;
-						} else {
-							return false;
-						}
-					});
-				});
-			} else if (this.category === 'alias') {
-				this.filteredIcons = this.icons.filter((icon) => {
-					icon.aliases.filter((alias) => {
-						if (alias.indexOf(this.searchField.toLowerCase()) > -1) {
-							return true;
-						} else {
-							return false;
-						}
-					});
-				});
-			} else {
-				this.filteredIcons = this.icons.filter((icon) => {
-					if (icon.name.indexOf(this.searchField.toLowerCase()) > -1) {
-						return true;
-					} else {
-						return false;
-					}
-				});
+		if (this.searchForm.get('category').value != null) {
+			switch (this.searchForm.get('category').value as SearchCategory) {
+				case 'alias':
+					this.filteredIcons = this.icons.pipe(
+						map(icons => icons.filter(icon => icon.aliases.indexOf(this.searchForm.get('query').value.toLowerCase()) > -1))
+					);
+					break;
+				case 'author':
+					this.filteredIcons = this.icons.pipe(
+						map(icons => icons.filter(icon => icon.author.indexOf(this.searchForm.get('query').value.toLowerCase()) > -1))
+					);
+					break;
+				case 'name':
+					this.filteredIcons = this.icons.pipe(
+						map(icons => icons.filter(icon => icon.name.indexOf(this.searchForm.get('query').value.toLowerCase()) > -1))
+					);
+					break;
+				case 'tag':
+					this.filteredIcons = this.icons.pipe(
+						map(icons => icons.filter(icon => icon.tags.indexOf(this.searchForm.get('query').value.toLowerCase()) > -1))
+					);
+					break;
 			}
-		} else {
-			// User did not select any category
-			this.filteredIcons = this.icons.filter((icon) => {
-				if (icon.name.indexOf(this.searchField.toLowerCase()) > -1) {
-					return true;
-				} else if (icon.tags) {
-					icon.tags.filter((tag) => {
-						if (tag.indexOf(this.searchField.toLowerCase()) > -1) {
-							return true;
-						}
-					});
-				} else if (icon.aliases) {
-					icon.aliases.filter((alias) => {
-						if (alias.indexOf(this.searchField.toLowerCase()) > -1) {
-							return true;
-						}
-					});
-				} else {
-					return false;
-				}
-			});
 		}
 	}
 	selected(name: string) {
+		console.log(`Icon selected: ${name}`);
 		if (this.selectedIcon === name) {
 			this.selectedIcon = null;
 			this.iconSelected = false;
@@ -146,14 +117,17 @@ export class IconsListComponent implements OnInit {
 		}
 	}
 
-	showCodeSnippet() {
+	showCodeSnippet(selectedIcon?: string) {
 		const dialogRef = this.dialog.open(CodeSnippetComponent);
-		dialogRef.componentInstance.selectedIcon = this.selectedIcon;
+		if (selectedIcon) {
+			dialogRef.componentInstance.selectedIcon = selectedIcon;
+		} else {
+			dialogRef.componentInstance.selectedIcon = this.selectedIcon;
+		}
 	}
-}
-interface Icon {
-	name: string;
-	aliases: string[];
-	tags: string[];
-	contributor: string;
+	showIconInfo(icon: Icon) {
+		this.dialog.open<IconInfoDialogComponent, Icon>(IconInfoDialogComponent, {
+			data: icon
+		});
+	}
 }
