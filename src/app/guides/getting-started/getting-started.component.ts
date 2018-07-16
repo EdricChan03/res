@@ -1,4 +1,4 @@
-import { SharedInjectable } from '../../shared.service';
+import { SharedService } from '../../shared.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GettingStartedComponent implements OnInit {
 
-	constructor(private shared: SharedInjectable) { }
+	constructor(private shared: SharedService) { }
 
 	ngOnInit() {
 		this.shared.title = 'Getting Started';

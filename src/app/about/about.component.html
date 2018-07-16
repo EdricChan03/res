@@ -1,5 +1,5 @@
-<h1>About Resources</h1>
-<p>This subpage of Chan4077.Github.io is to provide resources for all of my websites such as Chan4077.Github.io, pens I have
+<h1>About</h1>
+<p>This purpose of this subpage is to provide resources for all of my projects/websites such as Chan4077.Github.io, pens I have
 	in Codepen and more.</p>
 <h2>Credits</h2>
 <h3>MaterialDesignIcons</h3>
@@ -42,9 +42,9 @@
 <h4>License</h4>
 <mat-expansion-panel>
 	<mat-expansion-panel-header>
-		<mat-panel-title>Click to toggle content</mat-panel-title>
+		<mat-panel-title>Click to toggle license</mat-panel-title>
 	</mat-expansion-panel-header>
-	<pre><code>{{ mdiLicense }}</code></pre>
+	<pre><code>{{ mdiLicense | async }}</code></pre>
 </mat-expansion-panel>
 <h3>Angular/ Angular Material</h3>
 <mat-card class="github-card">
@@ -125,15 +125,15 @@
 		</div>
 	</mat-card-actions>
 </mat-card>
-<h4>License</h4>
+<h4>Licenses</h4>
 <mat-expansion-panel>
 	<mat-expansion-panel-header>
-		<mat-panel-title>Click to toggle content</mat-panel-title>
+		<mat-panel-title>Click to toggle license</mat-panel-title>
 	</mat-expansion-panel-header>
 	<h2>Angular</h2>
-	<pre><code>{{ angularLicense }}</code></pre>
+	<pre><code>{{ angularLicense | async }}</code></pre>
 	<h2>Angular Material</h2>
-	<pre><code>{{ matLicense }}</code></pre>
+	<pre><code>{{ matLicense | async }}</code></pre>
 </mat-expansion-panel>
 <h3>TypeScript</h3>
 <mat-card class="github-card">
@@ -171,11 +171,23 @@
 		</div>
 	</mat-card-actions>
 </mat-card>
+<h4>License</h4>
+<mat-expansion-panel>
+	<mat-expansion-panel-header>
+		<mat-panel-title>Click to toggle license</mat-panel-title>
+	</mat-expansion-panel-header>
+	<pre><code>{{ typescriptLicense | async }}</code></pre>
+</mat-expansion-panel>
 <p></p>
 <h3>Github Pages</h3>
 <p></p>
 <h2>Source code</h2>
-<p>The source code of this sub page is available at
+<p>The source code of this subpage is available at
 	<a href="https://github.com/Chan4077/res">Chan4077/res</a>.</p>
 <h2>License</h2>
-<pre><code>{{ projectLicense }}</code></pre>
+<mat-expansion-panel>
+	<mat-expansion-panel-header>
+		<mat-panel-title>Click to toggle license</mat-panel-title>
+	</mat-expansion-panel-header>
+	<pre><code>{{ projectLicense | async }}</code></pre>
+</mat-expansion-panel>

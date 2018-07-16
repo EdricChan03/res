@@ -4,7 +4,7 @@ import { CodeViewerComponent } from './code-viewer/code-viewer.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 
@@ -16,6 +16,8 @@ import { IconsListComponent } from './icons-list/icons-list.component';
 import { CodeSnippetComponent } from './code-snippet/code-snippet.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { KeyboardShortcutDialogComponent } from './dialogs/keyboard-shortcut-dialog/keyboard-shortcut-dialog.component';
+import { IconInfoDialogComponent } from './dialogs/icon-info-dialog/icon-info-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -25,12 +27,15 @@ import { AboutComponent } from './about/about.component';
 		IconsListComponent,
 		CodeSnippetComponent,
 		HomeComponent,
-		AboutComponent
+		AboutComponent,
+		KeyboardShortcutDialogComponent,
+		IconInfoDialogComponent
 	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		FormsModule,
+		ReactiveFormsModule,
 		FlexLayoutModule,
 		HttpClientModule,
 		MaterialModule,
@@ -39,7 +44,9 @@ import { AboutComponent } from './about/about.component';
 	],
 	bootstrap: [AppComponent],
 	entryComponents: [
-		CodeSnippetComponent
+		CodeSnippetComponent,
+		KeyboardShortcutDialogComponent,
+		IconInfoDialogComponent
 	]
 })
 export class AppModule {}
