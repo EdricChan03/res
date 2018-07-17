@@ -64,7 +64,7 @@ export class IconsListComponent implements OnInit {
 			category: ['', Validators.required]
 		});
 		this.shared.title = 'Home';
-		this.icons = this.http.get<Icon[]>('https://materialdesignicons.com/cdn/2.4.85/meta.json');
+		this.icons = this.http.get<Icon[]>('https://materialdesignicons.com/cdn/2.5.94/meta.json');
 		this.contributors = this.http.get<Contributor[]>('https://materialdesignicons.com/api/contributors/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B');
 	}
 	onContextMenu(event: MouseEvent, icon: Icon, menuTrigger: MatMenuTrigger, spanHtml: HTMLSpanElement) {
