@@ -6,9 +6,10 @@ import { trigger, style, animate, transition } from '@angular/animations';
 import { CodeSnippetComponent } from '../code-snippet/code-snippet.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { ActivatedRoute } from '@angular/router';
 import { IconInfoDialogComponent } from '../dialogs/icon-info-dialog/icon-info-dialog.component';
 import { Contributor, Icon, SearchCategory } from '../interfaces';
 @Component({
@@ -46,8 +47,26 @@ export class IconsListComponent implements OnInit {
 		private snackbar: MatSnackBar,
 		private shared: SharedService,
 		private dialog: MatDialog,
-		private fb: FormBuilder
-	) { }
+		private fb: FormBuilder,
+		private route: ActivatedRoute
+	) {
+		this.searchForm = this.fb.group({
+			query: ['', Validators.required],
+			category: ['', Validators.required]
+		});
+		route.queryParams.subscribe(params => {
+			for (const prop of Object.keys(params)) {
+				// this.params[prop] = params[prop];
+				if (this.searchForm.get(prop)) {
+					console.log(`Form control '${prop}' set to '${params[prop]}'`);
+					this.searchForm.get(prop).setValue(params[prop]);
+				}
+			}
+			if (params.hasOwnProperty('query') && params.hasOwnProperty('category')) {
+				this.showSearch = true;
+			}
+		});
+	}
 	get isMobile() {
 		return this.shared.isMobile();
 	}
@@ -59,9 +78,10 @@ export class IconsListComponent implements OnInit {
 		}
 	}
 	ngOnInit() {
-		this.searchForm = this.fb.group({
-			query: ['', Validators.required],
-			category: ['', Validators.required]
+		setTimeout(() => {
+			if (this.searchForm.controls['query'].value != null) {
+				this.search();
+			}
 		});
 		this.shared.title = 'Home';
 		this.icons = this.http.get<Icon[]>('https://materialdesignicons.com/cdn/2.5.94/meta.json');
