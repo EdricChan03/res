@@ -21,6 +21,10 @@ let maxAttempts = 3;
 let currentAttempt = 1;
 let hideLoggerDebug = false;
 
+function replaceAll(value: string, search: string, replacement: string) {
+	return value.replace(new RegExp(search, 'g'), replacement);
+}
+
 function downloadIcons(showFileTransfer: boolean) {
 	return progress(request('https://materialdesignicons.com/api/download/angularmaterial/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B'))
 		.on('progress', (state: { percent: number, size: { total: number, transferred: number } }) => {
@@ -116,11 +120,11 @@ gulp.task('modify-icons', () => {
 });
 
 function transformIconFile(content: string): string {
-	content = content.replace(SVG_PATTERN, (_match: string, head: string, id: string) =>
-		`${head} id="${id}" width="24px" height="24px" viewBox="0 0 24 24"`
-	);
-	content = content.replace('<g', '<svg');
-	content = content.replace('</g>', '</svg>');
+	// content = content.replace(SVG_PATTERN, (_match: string, head: string, id: string) =>
+	// 	`${head} id="${id}" width="24px" height="24px" viewBox="0 0 24 24"`
+	// );
+	content = replaceAll(content, '<g', '<svg');
+	content = replaceAll(content, '</g>', '</svg>');
 	return content;
 }
 
