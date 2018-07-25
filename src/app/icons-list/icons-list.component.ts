@@ -44,7 +44,6 @@ export class IconsListComponent implements OnInit {
 	searchForm: FormGroup;
 	constructor(
 		private http: HttpClient,
-		private snackbar: MatSnackBar,
 		private shared: SharedService,
 		private dialog: MatDialog,
 		private fb: FormBuilder,
@@ -84,8 +83,8 @@ export class IconsListComponent implements OnInit {
 			}
 		});
 		this.shared.title = 'Home';
-		this.icons = this.http.get<Icon[]>('https://materialdesignicons.com/cdn/2.5.94/meta.json');
-		this.contributors = this.http.get<Contributor[]>('https://materialdesignicons.com/api/contributors/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B');
+		this.icons = this.http.get<Icon[]>(this.shared.mdiIconListApi);
+		this.contributors = this.http.get<Contributor[]>(this.shared.mdiContributorsApi);
 	}
 	onContextMenu(event: MouseEvent, icon: Icon, menuTrigger: MatMenuTrigger, spanHtml: HTMLSpanElement) {
 		// Prevent the browser's context menu from showing

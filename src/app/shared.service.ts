@@ -19,6 +19,9 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class SharedService {
 	private _title = '';
+	readonly mdiContributorsApi: string = 'https://materialdesignicons.com/api/contributors/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B';
+	readonly mdiIconApi: string = 'https://materialdesignicons.com/api/icon/';
+	readonly mdiIconListApi: string = 'https://materialdesignicons.com/cdn/2.5.94/meta.json';
 	/**
 	 * Keydown events to the page
 	 */
@@ -84,8 +87,9 @@ export class SharedService {
 	 * Sends feedback
 	 * @param {string} feedback The initial value for the feedback
 	 * @returns The dialog ref of the dialog
+	 * @deprecated Don't use this at all!
 	 */
-	public sendFeedbackWithRef(feedback?: string): MatDialogRef<PromptDialog> {
+	sendFeedbackWithRef(feedback?: string): MatDialogRef<PromptDialog> {
 		// tslint:disable-next-line:max-line-length
 		const tempData: PromptDialogConfig = { title: 'Send Feedback', msg: 'What\'s the issue? Please report it in the textbox below:', placeholder: 'Feedback', textarea: true, ok: 'Send Feedback' };
 		if (feedback) {
@@ -102,6 +106,7 @@ export class SharedService {
 	 * @todo Add handling for when no external social media provider is specified
 	 * @todo Make this fully work, currently setting to `private` at the moment
 	 * @private
+	 * @deprecated Don't use this at all!
 	 */
 	private sendFeedback(feedback?: string, handleVia?: 'twitter' | 'facebook' | 'github') {
 		// tslint:disable-next-line:max-line-length
@@ -134,7 +139,7 @@ export class SharedService {
 	 * Whether the current device is mobile
 	 * @returns {boolean}
 	 */
-	public isMobile(): boolean {
+	isMobile(): boolean {
 		if (this.breakpointObserver.isMatched('(max-width: 699px)')) {
 			return true;
 		} else {
@@ -145,7 +150,7 @@ export class SharedService {
 	 * Opens a snackBar with the specified params and no return
 	 * @param {SnackBarConfig} opts The options of the snackBar
 	 */
-	public openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
+	openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
 		return this.handleSnackBar(opts);
 	}
 	/**
@@ -153,7 +158,7 @@ export class SharedService {
 	 * @param {SnackBarConfig} opts The options of the snackBar
 	 * @returns The snackbar ref of the snackbar component
 	 */
-	public openSnackBarComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
+	openSnackBarComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
 		return this.handleSnackBarWithComponent(opts);
 	}
 	/**
@@ -196,7 +201,7 @@ export class SharedService {
 	/**
 	 * Closes the current snackBar
 	 */
-	public closeSnackBar() {
+	closeSnackBar() {
 		this.snackBar.dismiss();
 	}
 	/**
@@ -204,7 +209,7 @@ export class SharedService {
 	 * @param {AlertDialogConfig} opts The options for the dialog
 	 * @returns {MatDialogRef<AlertDialog>}
 	 */
-	public openAlertDialog(opts: AlertDialogConfig): MatDialogRef<AlertDialog> {
+	openAlertDialog(opts: AlertDialogConfig): MatDialogRef<AlertDialog> {
 		if (opts) {
 			if (opts.panelClass) {
 				if (opts.backdropClass) {
@@ -234,7 +239,7 @@ export class SharedService {
 	 * @param {ConfirMatialogConfig} opts The options for the dialog
 	 * @return {MatDialogRef<ConfirMatialog>}
 	 */
-	public openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef<ConfirmDialog> {
+	openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef<ConfirmDialog> {
 		if (opts) {
 			if (opts.panelClass) {
 				if (opts.backdropClass) {
@@ -264,7 +269,7 @@ export class SharedService {
 	 * @param {PromptDialogConfig} opts The options for the dialog
 	 * @return {MatDialogRef<PromptDialog>}
 	 */
-	public openPromptDialog(opts: PromptDialogConfig): MatDialogRef<PromptDialog> {
+	openPromptDialog(opts: PromptDialogConfig): MatDialogRef<PromptDialog> {
 		if (opts) {
 			if (opts.panelClass) {
 				if (opts.backdropClass) {
@@ -295,7 +300,7 @@ export class SharedService {
 	 * @param {SelectionDialogConfig} opts The options for the dialog
 	 * @returns {MatDialogRef<SelectionDialog>}
 	 */
-	public openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog> {
+	openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog> {
 		if (opts) {
 			const dialogRef = this.dialog.open(SelectionDialog, { disableClose: true, panelClass: 'selection-dialog' });
 			dialogRef.componentInstance.selectionConfig = opts;
@@ -308,13 +313,13 @@ export class SharedService {
 	 * Gets all opens dialogs
 	 * @returns {MatDialogRef<any>[]}
 	 */
-	public getDialogs(): MatDialogRef<any>[] {
+	getDialogs(): MatDialogRef<any>[] {
 		return this.dialog.openDialogs;
 	}
 	/**
 	 * Closes all dialogs
 	 */
-	public closeAllDialogs() {
+	closeAllDialogs() {
 		this.dialog.closeAll();
 	}
 	/**
@@ -322,14 +327,14 @@ export class SharedService {
 	 * @param {string} id The ID of the dialog
 	 * @returns {MatDialogRef<any>}
 	 */
-	public getDialogById(id: string): MatDialogRef<any> {
+	getDialogById(id: string): MatDialogRef<any> {
 		return this.dialog.getDialogById(id);
 	}
 	/**
 	 * Observable for after all dialogs have been closed
 	 * @returns {Observable<void>}
 	 */
-	public afterAllClosed(): Observable<void> {
+	afterAllClosed(): Observable<void> {
 		return this.dialog.afterAllClosed;
 	}
 	/**

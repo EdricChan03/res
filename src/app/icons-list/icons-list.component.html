@@ -9,8 +9,8 @@
 			<mat-form-field fxFlex>
 				<mat-label>Search</mat-label>
 				<input matInput formControlName="query">
-				<button mat-icon-button matSuffix (click)="searchForm.get('query')?.reset()">
-					<mat-icon svgIcon="close"></mat-icon>
+				<button mat-icon-button matSuffix (click)="searchForm.get('query')?.reset()" aria-label="Clear search query" type="button">
+					<mat-icon svgIcon="close" aria-label="Close icon"></mat-icon>
 				</button>
 				<mat-error *ngIf="searchForm.get('query')?.hasError('required')">This is required.</mat-error>
 			</mat-form-field>
