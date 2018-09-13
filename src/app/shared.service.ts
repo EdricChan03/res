@@ -21,7 +21,7 @@ export class SharedService {
 	private _title = '';
 	readonly mdiContributorsApi: string = 'https://materialdesignicons.com/api/contributors/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B';
 	readonly mdiIconApi: string = 'https://materialdesignicons.com/api/icon/';
-	readonly mdiIconListApi: string = 'https://materialdesignicons.com/cdn/2.5.94/meta.json';
+	readonly mdiIconListApi: string = 'https://materialdesignicons.com/cdn/2.7.94/meta.json';
 	/**
 	 * Keydown events to the page
 	 */
