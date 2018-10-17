@@ -130,7 +130,7 @@ function transformIconFile(content: string): string {
   // content = content.replace(SVG_PATTERN, (_match: string, head: string, id: string) =>
   //  `${head} id="${id}" width="24px" height="24px" viewBox="0 0 24 24"`
   // );
-  content = replaceAll(content, /<g id="[A-Za-z][A-Za-z0-9]*"/, '')
+  content = replaceAll(content, '<g id="[A-Za-z][A-Za-z0-9]*"', '')
   content = replaceAll(content, '<g', '<svg');
   content = replaceAll(content, '</g>', '</svg>');
   return content;
