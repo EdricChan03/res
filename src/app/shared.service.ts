@@ -3,7 +3,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { Observable } from 'rxjs/Observable';
 import { Injectable, Component, OnInit, ViewChild, NgModule } from '@angular/core';
 import { MatSnackBarConfig, MatSnackBar, MatSnackBarRef, SimpleSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
@@ -13,7 +12,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Title, SafeHtml } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { MatCommonModule } from '@angular/material/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 
 @Injectable()
