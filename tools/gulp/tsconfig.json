@@ -1,26 +1,24 @@
 {
-	"compilerOptions": {
-		"experimentalDecorators": true,
-		"noUnusedParameters": true,
-		"lib": [
-			"es2018"
-		],
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"outDir": "../../dist/tools/gulp",
-		"strictNullChecks": false,
-		"noEmitOnError": true,
-		"noImplicitAny": true,
-		"target": "es5",
-		"types": [
-			"node"
-		],
-		"paths": {
-			
-		},
-		"baseUrl": "."
-	},
-	"files": [
-		"gulpfile.ts"
-	]
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "noUnusedParameters": true,
+    "lib": [
+      "es2018"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "../../dist/tools/gulp",
+    "strictNullChecks": false,
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "target": "es5",
+    "types": [
+      "node"
+    ],
+    "paths": {},
+    "baseUrl": "."
+  },
+  "files": [
+    "gulpfile.ts"
+  ]
 }

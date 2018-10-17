@@ -1,71 +1,71 @@
 <h1>List of icons</h1>
 <p>Hey there! This page shows all the icons currently available. On load, this will load all the icons available, so beware
-	of the lag!</p>
+  of the lag!</p>
 <button mat-raised-button (click)="showSearch = !showSearch; iconSelected = false">Search</button>
 <mat-card fxLayout="column" *ngIf="showSearch">
-	<mat-card-title>Search icons</mat-card-title>
-	<mat-card-content fxLayout="column">
-		<form [formGroup]="searchForm" fxLayout="column">
-			<mat-form-field fxFlex>
-				<mat-label>Search</mat-label>
-				<input matInput formControlName="query">
-				<button mat-icon-button matSuffix (click)="searchForm.get('query')?.reset()" aria-label="Clear search query" type="button">
-					<mat-icon svgIcon="close" aria-label="Close icon"></mat-icon>
-				</button>
-				<mat-error *ngIf="searchForm.get('query')?.hasError('required')">This is required.</mat-error>
-			</mat-form-field>
-			<mat-form-field fxFlex>
-				<mat-label>Filter by</mat-label>
-				<mat-select formControlName="category">
-					<mat-option>None</mat-option>
-					<mat-option value="alias">Alias</mat-option>
-					<mat-option value="author">Author</mat-option>
-					<mat-option value="name">Name</mat-option>
-					<mat-option value="tag">Tag</mat-option>
-				</mat-select>
-				<mat-error *ngIf="searchForm.get('category')?.hasError('required')">This is required.</mat-error>
-			</mat-form-field>
-		</form>
-	</mat-card-content>
-	<mat-card-actions align="end">
-		<button mat-raised-button (click)="search()" color="primary" [disabled]="searchForm.invalid">Search</button>
-	</mat-card-actions>
+  <mat-card-title>Search icons</mat-card-title>
+  <mat-card-content fxLayout="column">
+    <form [formGroup]="searchForm" fxLayout="column">
+      <mat-form-field fxFlex>
+        <mat-label>Search</mat-label>
+        <input matInput formControlName="query">
+        <button mat-icon-button matSuffix (click)="searchForm.get('query')?.reset()" aria-label="Clear search query" type="button">
+          <mat-icon svgIcon="close" aria-label="Close icon"></mat-icon>
+        </button>
+        <mat-error *ngIf="searchForm.get('query')?.hasError('required')">This is required.</mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>Filter by</mat-label>
+        <mat-select formControlName="category">
+          <mat-option>None</mat-option>
+          <mat-option value="alias">Alias</mat-option>
+          <mat-option value="author">Author</mat-option>
+          <mat-option value="name">Name</mat-option>
+          <mat-option value="tag">Tag</mat-option>
+        </mat-select>
+        <mat-error *ngIf="searchForm.get('category')?.hasError('required')">This is required.</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button (click)="search()" color="primary" [disabled]="searchForm.invalid">Search</button>
+  </mat-card-actions>
 </mat-card>
 <div class="icons" fxLayout="row wrap" *ngIf="!showSearch">
-	<div class="icon-square" *ngFor="let icon of icons | async" [matTooltip]="icon.name" role="button" (click)="selected(icon.name)"
-	 (contextmenu)="onContextMenu($event, icon, contextMenuTrigger, spanContext)" [ngClass]="{'icon-selected mat-elevation-z3': icon.name == selectedIcon}">
-		<mat-icon [svgIcon]="icon.name"></mat-icon>
-		<span [matMenuTriggerFor]="contextMenu" #contextMenuTrigger="matMenuTrigger" #spanContext style="position: fixed"></span>
-		<mat-menu #contextMenu="matMenu">
-			<button mat-menu-item (click)="showIconInfo(icon)">
-				<mat-icon svgIcon="information"></mat-icon>
-				Icon info
-			</button>
-			<button mat-menu-item (click)="showCodeSnippet(icon.name)">
-				<mat-icon svgIcon="code-tags"></mat-icon>
-				View code snippet
-			</button>
-		</mat-menu>
-	</div>
+  <div class="icon-square" *ngFor="let icon of icons | async" [matTooltip]="icon.name" role="button" (click)="selected(icon.name)"
+   (contextmenu)="onContextMenu($event, icon, contextMenuTrigger, spanContext)" [ngClass]="{'icon-selected mat-elevation-z3': icon.name == selectedIcon}">
+    <mat-icon [svgIcon]="icon.name"></mat-icon>
+    <span [matMenuTriggerFor]="contextMenu" #contextMenuTrigger="matMenuTrigger" #spanContext style="position: fixed"></span>
+    <mat-menu #contextMenu="matMenu">
+      <button mat-menu-item (click)="showIconInfo(icon)">
+        <mat-icon svgIcon="information"></mat-icon>
+        Icon info
+      </button>
+      <button mat-menu-item (click)="showCodeSnippet(icon.name)">
+        <mat-icon svgIcon="code-tags"></mat-icon>
+        View code snippet
+      </button>
+    </mat-menu>
+  </div>
 </div>
 <div class="icons" fxLayout="row wrap" *ngIf="showSearch && filteredIcons">
-	<div class="icon-square" *ngFor="let icon of filteredIcons | async" [matTooltip]="icon.name" role="button" (click)="selected(icon.name)"
-	 (contextmenu)="onContextMenu($event, icon, contextMenuTrigger, spanContext)" [ngClass]="{'icon-selected mat-elevation-z3': icon.name == selectedIcon}">
-		<mat-icon [svgIcon]="icon.name"></mat-icon>
-		<span [matMenuTriggerFor]="contextMenu" #contextMenuTrigger="matMenuTrigger" #spanContext style="position: fixed"></span>
-		<mat-menu #contextMenu="matMenu">
-			<button mat-menu-item (click)="showIconInfo(icon)">
-				<mat-icon svgIcon="information"></mat-icon>
-				Icon info
-			</button>
-			<button mat-menu-item (click)="showCodeSnippet(icon.name)">
-				<mat-icon svgIcon="code-tags"></mat-icon>
-				View code snippet
-			</button>
-		</mat-menu>
-	</div>
+  <div class="icon-square" *ngFor="let icon of filteredIcons | async" [matTooltip]="icon.name" role="button" (click)="selected(icon.name)"
+   (contextmenu)="onContextMenu($event, icon, contextMenuTrigger, spanContext)" [ngClass]="{'icon-selected mat-elevation-z3': icon.name == selectedIcon}">
+    <mat-icon [svgIcon]="icon.name"></mat-icon>
+    <span [matMenuTriggerFor]="contextMenu" #contextMenuTrigger="matMenuTrigger" #spanContext style="position: fixed"></span>
+    <mat-menu #contextMenu="matMenu">
+      <button mat-menu-item (click)="showIconInfo(icon)">
+        <mat-icon svgIcon="information"></mat-icon>
+        Icon info
+      </button>
+      <button mat-menu-item (click)="showCodeSnippet(icon.name)">
+        <mat-icon svgIcon="code-tags"></mat-icon>
+        View code snippet
+      </button>
+    </mat-menu>
+  </div>
 </div>
 <button mat-fab aria-label="Open code snippet" class="copy-code-snippet-overlay-btn" matTooltip="Show code snippet" matTooltipPosition="left"
  *ngIf="!isMobile && selectedIcon != null" @enterAnimation (click)="showCodeSnippet()" [style.bottom]="hasScrolled() ? '120px':'40px'">
-	<mat-icon svgIcon="code-tags"></mat-icon>
+  <mat-icon svgIcon="code-tags"></mat-icon>
 </button>

@@ -20,33 +20,33 @@ import { KeyboardShortcutDialogComponent } from './dialogs/keyboard-shortcut-dia
 import { IconInfoDialogComponent } from './dialogs/icon-info-dialog/icon-info-dialog.component';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		CodeViewerComponent,
-		GettingStartedComponent,
-		IconsListComponent,
-		CodeSnippetComponent,
-		HomeComponent,
-		AboutComponent,
-		KeyboardShortcutDialogComponent,
-		IconInfoDialogComponent
-	],
-	imports: [
-		BrowserModule,
-		BrowserAnimationsModule,
-		FormsModule,
-		ReactiveFormsModule,
-		FlexLayoutModule,
-		HttpClientModule,
-		MaterialModule,
-		SharedModule,
-		AppRouting
-	],
-	bootstrap: [AppComponent],
-	entryComponents: [
-		CodeSnippetComponent,
-		KeyboardShortcutDialogComponent,
-		IconInfoDialogComponent
-	]
+  declarations: [
+    AppComponent,
+    CodeViewerComponent,
+    GettingStartedComponent,
+    IconsListComponent,
+    CodeSnippetComponent,
+    HomeComponent,
+    AboutComponent,
+    KeyboardShortcutDialogComponent,
+    IconInfoDialogComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MaterialModule,
+    SharedModule,
+    AppRouting
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CodeSnippetComponent,
+    KeyboardShortcutDialogComponent,
+    IconInfoDialogComponent
+  ]
 })
 export class AppModule {}

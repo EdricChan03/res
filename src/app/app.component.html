@@ -1,87 +1,87 @@
 <mat-sidenav-container fullscreen>
-	<mat-sidenav #sidenav class="app-sidenav mat-elevation-z3" [mode]="isMobile ? 'over' : 'side'">
-		<mat-toolbar>
-			Links
-			<span fxFlex></span>
-			<button mat-icon-button (click)="sidenav.close()" matTooltip="Close sidenav" matTooltipPosition="left">
-				<mat-icon svgIcon="chevron-left"></mat-icon>
-			</button>
-		</mat-toolbar>
-		<mat-nav-list>
-			<a mat-list-item routerLink="/home" routerLinkActive="active-link">
-				<mat-icon matListIcon svgIcon="home"></mat-icon>
-				<h3 matLine>Home</h3>
-			</a>
-			<a mat-list-item routerLink="/icons-list" routerLinkActive="active-link">
-				<mat-icon matListIcon svgIcon="view-grid"></mat-icon>
-				<h3 matLine>List of icons</h3>
-				<p matLine>Warning: May lag your device</p>
-			</a>
-			<a mat-list-item routerLink="/about" routerLinkActive="active-link">
-				<mat-icon matListIcon svgIcon="information"></mat-icon>
-				<h3 matLine>About</h3>
-			</a>
-			<h3 matSubheader>Guides</h3>
-			<a mat-list-item routerLink="/guides/getting-started" routerLinkActive="active-link">
-				<mat-icon matListIcon svgIcon="help-circle"></mat-icon>
-				<h3 matLine>Getting started</h3>
-			</a>
-			<h3 matSubheader>Downloads</h3>
-			<a mat-list-item href="./assets/mdi.svg" download>
-				<mat-icon matListIcon svgIcon="download"></mat-icon>
-				<h3 matLine>Download icons</h3>
-			</a>
-			<h3 matSubheader>More resources</h3>
-			<a mat-list-item href="https://materialdesignicons.com">
-				<mat-icon matListIcon svgIcon="vector-square"></mat-icon>
-				<h3 matLine>Material Design Icons</h3>
-			</a>
-			<a mat-list-item href="https://angular.io">
-				<mat-icon matListIcon svgIcon="angular"></mat-icon>
-				<h3 matLine>Angular Docs</h3>
-			</a>
-			<a mat-list-item href="https://material.angular.io">
-				<mat-icon matListIcon svgIcon="angular"></mat-icon>
-				<h3 matLine>Angular Material Docs</h3>
-			</a>
-			<footer>
-				<a href="https://chan4077.github.io" title="Back to home">
-					<mat-icon class="website-logo" svgIcon="website-logo-full"></mat-icon>
-				</a>
-			</footer>
-		</mat-nav-list>
-	</mat-sidenav>
-	<mat-sidenav-content (scroll)="isScrolled()" id="sidenav-content">
-		<mat-toolbar color="primary" class="mat-elevation-z3 app-toolbar" id="top">
-			<button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav" *ngIf="!isSidenavOpened">
-				<mat-icon svgIcon="menu"></mat-icon>
-			</button>
-			<mat-icon svgIcon="website-logo" class="website-logo-icon"></mat-icon>
-			<span fxFlex></span>
-			<button mat-icon-button [matMenuTriggerFor]="moreMenu" matTooltip="More options">
-				<mat-icon svgIcon="dots-vertical"></mat-icon>
-			</button>
-			<mat-menu #moreMenu="matMenu">
-				<a mat-menu-item href="https://chan4077.github.io">
-					<mat-icon svgIcon="open-in-new"></mat-icon>
-					Back to website
-				</a>
-				<button mat-menu-item (click)="openKeyboardShortcutDialog()">
-					<mat-icon svgIcon="keyboard"></mat-icon>
-					Keyboard shortcuts
-				</button>
-				<a mat-menu-item href="https://github.com/Chan4077/res">
-					<mat-icon svgIcon="github-circle"></mat-icon>
-					Source Code
-				</a>
-			</mat-menu>
-		</mat-toolbar>
-		<div class="page-title">
-			<h1>{{getTitle()}}</h1>
-		</div>
-		<div class="app-content" fxLayout="column">
-			<router-outlet></router-outlet>
-		</div>
-	</mat-sidenav-content>
+  <mat-sidenav #sidenav class="app-sidenav mat-elevation-z3" [mode]="isMobile ? 'over' : 'side'">
+    <mat-toolbar>
+      Links
+      <span fxFlex></span>
+      <button mat-icon-button (click)="sidenav.close()" matTooltip="Close sidenav" matTooltipPosition="left">
+        <mat-icon svgIcon="chevron-left"></mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" routerLinkActive="active-link">
+        <mat-icon matListIcon svgIcon="home"></mat-icon>
+        <h3 matLine>Home</h3>
+      </a>
+      <a mat-list-item routerLink="/icons-list" routerLinkActive="active-link">
+        <mat-icon matListIcon svgIcon="view-grid"></mat-icon>
+        <h3 matLine>List of icons</h3>
+        <p matLine>Warning: May lag your device</p>
+      </a>
+      <a mat-list-item routerLink="/about" routerLinkActive="active-link">
+        <mat-icon matListIcon svgIcon="information"></mat-icon>
+        <h3 matLine>About</h3>
+      </a>
+      <h3 matSubheader>Guides</h3>
+      <a mat-list-item routerLink="/guides/getting-started" routerLinkActive="active-link">
+        <mat-icon matListIcon svgIcon="help-circle"></mat-icon>
+        <h3 matLine>Getting started</h3>
+      </a>
+      <h3 matSubheader>Downloads</h3>
+      <a mat-list-item href="./assets/mdi.svg" download>
+        <mat-icon matListIcon svgIcon="download"></mat-icon>
+        <h3 matLine>Download icons</h3>
+      </a>
+      <h3 matSubheader>More resources</h3>
+      <a mat-list-item href="https://materialdesignicons.com">
+        <mat-icon matListIcon svgIcon="vector-square"></mat-icon>
+        <h3 matLine>Material Design Icons</h3>
+      </a>
+      <a mat-list-item href="https://angular.io">
+        <mat-icon matListIcon svgIcon="angular"></mat-icon>
+        <h3 matLine>Angular Docs</h3>
+      </a>
+      <a mat-list-item href="https://material.angular.io">
+        <mat-icon matListIcon svgIcon="angular"></mat-icon>
+        <h3 matLine>Angular Material Docs</h3>
+      </a>
+      <footer>
+        <a href="https://chan4077.github.io" title="Back to home">
+          <mat-icon class="website-logo" svgIcon="website-logo-full"></mat-icon>
+        </a>
+      </footer>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content (scroll)="isScrolled()" id="sidenav-content">
+    <mat-toolbar color="primary" class="mat-elevation-z3 app-toolbar" id="top">
+      <button mat-icon-button (click)="sidenav.toggle()" aria-label="Toggle sidenav" *ngIf="!isSidenavOpened">
+        <mat-icon svgIcon="menu"></mat-icon>
+      </button>
+      <mat-icon svgIcon="website-logo" class="website-logo-icon"></mat-icon>
+      <span fxFlex></span>
+      <button mat-icon-button [matMenuTriggerFor]="moreMenu" matTooltip="More options">
+        <mat-icon svgIcon="dots-vertical"></mat-icon>
+      </button>
+      <mat-menu #moreMenu="matMenu">
+        <a mat-menu-item href="https://chan4077.github.io">
+          <mat-icon svgIcon="open-in-new"></mat-icon>
+          Back to website
+        </a>
+        <button mat-menu-item (click)="openKeyboardShortcutDialog()">
+          <mat-icon svgIcon="keyboard"></mat-icon>
+          Keyboard shortcuts
+        </button>
+        <a mat-menu-item href="https://github.com/Chan4077/res">
+          <mat-icon svgIcon="github-circle"></mat-icon>
+          Source Code
+        </a>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="page-title">
+      <h1>{{getTitle()}}</h1>
+    </div>
+    <div class="app-content" fxLayout="column">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
 </mat-sidenav-container>
 <button mat-fab (click)="scrollToTop()" class="scroll-to-top-btn" color="primary" *ngIf="isScrolled()" matTooltip="Scroll to top" matTooltipPosition="left" @enterAnimation><mat-icon svgIcon="chevron-up"></mat-icon></button>

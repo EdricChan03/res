@@ -26,43 +26,43 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { DomSanitizer } from '@angular/platform-browser';
 //#region Material modules required by the app
 const MATERIAL_MODULES = [
-	MatButtonModule,
-	MatCardModule,
-	MatCheckboxModule,
-	MatDialogModule,
-	MatExpansionModule,
-	MatFormFieldModule,
-	MatIconModule,
-	MatInputModule,
-	MatListModule,
-	MatMenuModule,
-	MatProgressSpinnerModule,
-	MatRippleModule,
-	MatSelectModule,
-	MatSnackBarModule,
-	MatSidenavModule,
-	MatToolbarModule,
-	MatTooltipModule
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatProgressSpinnerModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatTooltipModule
 ];
 //#endregion
 //#region CDK modules required by the app
 const CDK_MODULES = [
-	LayoutModule
+  LayoutModule
 ];
 //#endregion
 @NgModule({
-	exports: [
-		MATERIAL_MODULES,
-		CDK_MODULES
-	],
-	providers: [
-		{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
-	]
+  exports: [
+    MATERIAL_MODULES,
+    CDK_MODULES
+  ],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }
+  ]
 })
 export class MaterialModule {
-	constructor(private matIconRegistry: MatIconRegistry, private dom: DomSanitizer) {
-		matIconRegistry.addSvgIconSet(dom.bypassSecurityTrustResourceUrl('assets/mdi.svg'))
-			.addSvgIcon('website-logo', dom.bypassSecurityTrustResourceUrl('assets/website.svg'))
-			.addSvgIcon('website-logo-full', dom.bypassSecurityTrustResourceUrl('assets/website-logo-full.svg'));
-	}
+  constructor(private matIconRegistry: MatIconRegistry, private dom: DomSanitizer) {
+    matIconRegistry.addSvgIconSet(dom.bypassSecurityTrustResourceUrl('assets/mdi.svg'))
+      .addSvgIcon('website-logo', dom.bypassSecurityTrustResourceUrl('assets/website.svg'))
+      .addSvgIcon('website-logo-full', dom.bypassSecurityTrustResourceUrl('assets/website-logo-full.svg'));
+  }
 }

@@ -1,51 +1,51 @@
 <div class="instructions">
-	<p>Follow these steps to include MDI to your Angular Material project. (This asumes that you already know how to create an Angular app using the CLI and you know the basics of Angular.)</p>
-	<ol>
-		<li>
-			<p>Save <a href="./assets/mdi.svg" download><code class="docs-code">mdi.svg</code></a> to your <code class="docs-code">assets</code> folder. (located in <code class="docs-code">src/assets</code>) Alternatively, you can get <code class="docs-code">mdi.svg</code> from this website by using <a href="https://chan4077.github.io/res/mdi.svg">https://chan4077.github.io/res/mdi.svg</a>.</p>
-		</li>
-		<li>
-			<p>In your app's module, import <code class="docs-code">MatIconModule</code> and <code class="docs-code">MatIconRegistry</code> from <code class="docs-code">@angular/material</code> as well as <code class="docs-code">HttpModule</code> from <code class="docs-code">@angular/http</code> and <code class="docs-code">DomSanitizer</code> from <code class="docs-code">@angular/platform-browser</code>. Place <code class="docs-code">MatIconModule</code> under <code class="docs-code">imports</code>.</p>
-			<code-viewer language="typescript">import &#123; MatIconModule, MatIconRegistry &#125; from '@angular/material';
+  <p>Follow these steps to include MDI to your Angular Material project. (This asumes that you already know how to create an Angular app using the CLI and you know the basics of Angular.)</p>
+  <ol>
+    <li>
+      <p>Save <a href="./assets/mdi.svg" download><code class="docs-code">mdi.svg</code></a> to your <code class="docs-code">assets</code> folder. (located in <code class="docs-code">src/assets</code>) Alternatively, you can get <code class="docs-code">mdi.svg</code> from this website by using <a href="https://chan4077.github.io/res/mdi.svg">https://chan4077.github.io/res/mdi.svg</a>.</p>
+    </li>
+    <li>
+      <p>In your app's module, import <code class="docs-code">MatIconModule</code> and <code class="docs-code">MatIconRegistry</code> from <code class="docs-code">@angular/material</code> as well as <code class="docs-code">HttpModule</code> from <code class="docs-code">@angular/http</code> and <code class="docs-code">DomSanitizer</code> from <code class="docs-code">@angular/platform-browser</code>. Place <code class="docs-code">MatIconModule</code> under <code class="docs-code">imports</code>.</p>
+      <code-viewer language="typescript">import &#123; MatIconModule, MatIconRegistry &#125; from '@angular/material';
 import &#123; HttpModule &#125; from '@angular/http';
 @NgModule(&#123;
-	imports: [
-		HttpModule,
-		MatIconModule
-	]
+  imports: [
+    HttpModule,
+    MatIconModule
+  ]
 &#125;)</code-viewer>
-			<p>If you're using version <code class="docs-code">5.0.0-rc0</code>, use this code instead:</p>
-			<code-viewer language="typescript">import &#123; MatIconModule, MatIconRegistry &#125; from '@angular/material';
-			import &#123; HttpClientModule &#125; from '@angular/common/http';
-			@NgModule(&#123;
-				imports: [
-				HttpClientModule,
-				MatIconModule
-			]
-			&#125;)</code-viewer>
-		</li>
-		<li>
-			<p>Next, add a <code class="docs-code">constructor</code> to your app's module as below:</p>
-			<code-viewer language="typescript">export class AppModule &#123;
-	constructor(private matIconRegistry: MatIconRegistry, private dom: DomSanitizer)&#123;
-		matIconRegistry.addSvgIconSet(dom.bypassSecurityResourceUrl('./assets/mdi.svg'));
-	&#125;				
+      <p>If you're using version <code class="docs-code">5.0.0-rc0</code>, use this code instead:</p>
+      <code-viewer language="typescript">import &#123; MatIconModule, MatIconRegistry &#125; from '@angular/material';
+      import &#123; HttpClientModule &#125; from '@angular/common/http';
+      @NgModule(&#123;
+        imports: [
+        HttpClientModule,
+        MatIconModule
+      ]
+      &#125;)</code-viewer>
+    </li>
+    <li>
+      <p>Next, add a <code class="docs-code">constructor</code> to your app's module as below:</p>
+      <code-viewer language="typescript">export class AppModule &#123;
+  constructor(private matIconRegistry: MatIconRegistry, private dom: DomSanitizer)&#123;
+    matIconRegistry.addSvgIconSet(dom.bypassSecurityResourceUrl('./assets/mdi.svg'));
+  &#125;        
 &#125;</code-viewer>
-		</li>
-		<li>
-			<p>After that, add the following classes to your <code class="docs-code">styles.css</code> (or <code class="docs-code">styles.scss</code>, or wherever your app-specific styles are):</p>
-			<code-viewer language="css">button.mat-menu-item &#123;
-	line-height: 24px !important;
+    </li>
+    <li>
+      <p>After that, add the following classes to your <code class="docs-code">styles.css</code> (or <code class="docs-code">styles.scss</code>, or wherever your app-specific styles are):</p>
+      <code-viewer language="css">button.mat-menu-item &#123;
+  line-height: 24px !important;
 &#125;
 .mat-icon svg &#123;
-	height: 24px;
-	width: 24px;
+  height: 24px;
+  width: 24px;
 &#125;</code-viewer>
-		</li>
-		<li>
-			<p>Finally, to use these icons, use the <code class="docs-code">svgIcon</code> attribute of <code class="docs-code">mat-icon</code>:</p>
-			<code-viewer language="html">&lt;mat-icon svgIcon="account"&gt;&lt;/mat-icon&gt;</code-viewer>
-			<p>And you're done!</p>
-		</li>
-	</ol>
+    </li>
+    <li>
+      <p>Finally, to use these icons, use the <code class="docs-code">svgIcon</code> attribute of <code class="docs-code">mat-icon</code>:</p>
+      <code-viewer language="html">&lt;mat-icon svgIcon="account"&gt;&lt;/mat-icon&gt;</code-viewer>
+      <p>And you're done!</p>
+    </li>
+  </ol>
 </div>

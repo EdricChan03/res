@@ -1,25 +1,25 @@
 <h2 matDialogTitle>Code snippet</h2>
 <mat-dialog-content>
-	<p>Copy this code snippet by clicking on the "Copy code" button on the top right of the code block.</p>
-	<mat-accordion style="display: block; padding-bottom: 10px">
-		<mat-expansion-panel>
-			<mat-expansion-panel-header>
-				<mat-panel-title>Angular Material</mat-panel-title>
-			</mat-expansion-panel-header>
-			<code-viewer language="html">&lt;mat-icon svgIcon="{{selectedIcon}}"&gt;&lt;/mat-icon&gt;</code-viewer>
-		</mat-expansion-panel>
-		<mat-expansion-panel>
-			<mat-expansion-panel-header>
-				<mat-panel-title>AngularJS Material</mat-panel-title>
-			</mat-expansion-panel-header>
-			<code-viewer language="html">&lt;md-icon md-svg-icon="{{selectedIcon}}"&gt;&lt;/md-icon&gt;</code-viewer>
-		</mat-expansion-panel>
-	</mat-accordion>
+  <p>Copy this code snippet by clicking on the "Copy code" button on the top right of the code block.</p>
+  <mat-accordion style="display: block; padding-bottom: 10px">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Angular Material</mat-panel-title>
+      </mat-expansion-panel-header>
+      <code-viewer language="html">&lt;mat-icon svgIcon="{{selectedIcon}}"&gt;&lt;/mat-icon&gt;</code-viewer>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>AngularJS Material</mat-panel-title>
+      </mat-expansion-panel-header>
+      <code-viewer language="html">&lt;md-icon md-svg-icon="{{selectedIcon}}"&gt;&lt;/md-icon&gt;</code-viewer>
+    </mat-expansion-panel>
+  </mat-accordion>
 </mat-dialog-content>
 <mat-dialog-actions>
-	<a mat-icon-button href="https://materialdesignicons.com/icon/{{selectedIcon}}" target="_blank" color="primary" matTooltip="View icon at MDI">
-		<mat-icon svgIcon="open-in-new"></mat-icon>
-	</a>
-	<span fxFlex></span>
-	<button mat-button color="primary" (click)="close()">Dismiss</button>
+  <a mat-icon-button href="https://materialdesignicons.com/icon/{{selectedIcon}}" target="_blank" color="primary" matTooltip="View icon at MDI">
+    <mat-icon svgIcon="open-in-new"></mat-icon>
+  </a>
+  <span fxFlex></span>
+  <button mat-button color="primary" (click)="close()">Dismiss</button>
 </mat-dialog-actions>
