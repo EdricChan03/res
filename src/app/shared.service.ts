@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { Observable } from 'rxjs/Observable';
-import { Injectable, Component, OnInit, ViewChild, DoCheck, NgModule } from '@angular/core';
+import { Injectable, Component, OnInit, ViewChild, NgModule } from '@angular/core';
 import { MatSnackBarConfig, MatSnackBar, MatSnackBarRef, SimpleSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatSelectionList, MatListModule } from '@angular/material/list';
@@ -19,9 +19,10 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class SharedService {
   private _title = '';
-  readonly mdiContributorsApi: string = 'https://materialdesignicons.com/api/contributors/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B';
-  readonly mdiIconApi: string = 'https://materialdesignicons.com/api/icon/';
-  readonly mdiIconListApi: string = 'https://materialdesignicons.com/cdn/2.7.94/meta.json';
+  readonly mdiContributorsApi = 'https://materialdesignicons.com/api/contributors/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B';
+  readonly mdiIconApi = 'https://materialdesignicons.com/api/icon/';
+  readonly mdiIconVersion = '2.8.94';
+  readonly mdiIconListApi = `https://materialdesignicons.com/cdn/${this.mdiIconVersion}/meta.json`;
   /**
    * Keydown events to the page
    */
@@ -85,9 +86,9 @@ export class SharedService {
   }
   /**
    * Sends feedback
-   * @param {string} feedback The initial value for the feedback
+   * @param feedback The initial value for the feedback
    * @returns The dialog ref of the dialog
-   * @deprecated Don't use this at all!
+   * @deprecated
    */
   sendFeedbackWithRef(feedback?: string): MatDialogRef<PromptDialog> {
     // tslint:disable-next-line:max-line-length
@@ -106,7 +107,7 @@ export class SharedService {
    * @todo Add handling for when no external social media provider is specified
    * @todo Make this fully work, currently setting to `private` at the moment
    * @private
-   * @deprecated Don't use this at all!
+   * @deprecated
    */
   private sendFeedback(feedback?: string, handleVia?: 'twitter' | 'facebook' | 'github') {
     // tslint:disable-next-line:max-line-length
@@ -137,7 +138,6 @@ export class SharedService {
   }
   /**
    * Whether the current device is mobile
-   * @returns {boolean}
    */
   isMobile(): boolean {
     if (this.breakpointObserver.isMatched('(max-width: 699px)')) {
@@ -147,24 +147,24 @@ export class SharedService {
     }
   }
   /**
-   * Opens a snackBar with the specified params and no return
-   * @param {SnackBarConfig} opts The options of the snackBar
+   * Opens a snackbar with the specified params and no return
+   * @param opts The options of the snackBar
    */
   openSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
     return this.handleSnackBar(opts);
   }
   /**
-   * Opens a snackBar with the specified params and a return of the snackBar's ref (for component)
-   * @param {SnackBarConfig} opts The options of the snackBar
+   * Opens a component in a snackbar
+   * @param opts The options of the snackbar
    * @returns The snackbar ref of the snackbar component
    */
   openSnackBarComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
     return this.handleSnackBarWithComponent(opts);
   }
   /**
-   * Handling of the snackBar
-   * @param {SnackBarConfig} opts The snackBar config
-   * @returns {MatSnackBarRef<SimpleSnackBar>}
+   * Handling of the snackbar
+   * @param opts The snackbar config
+   * @returns The snackbar's ref
    * @private
    */
   private handleSnackBar(opts: SnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
@@ -179,9 +179,9 @@ export class SharedService {
     }
   }
   /**
-   * Handles a snackBar with a component
-   * @param {SnackBarConfig} opts The config for the snackBar
-   * @returns {MatSnackbarRef<any>}
+   * Handles a snackbar with a component
+   * @param opts The config for the snackBar
+   * @retrns The snackbar's ref
    */
   private handleSnackBarWithComponent(opts: SnackBarConfig): MatSnackBarRef<any> {
     if (opts) {
@@ -199,15 +199,15 @@ export class SharedService {
     }
   }
   /**
-   * Closes the current snackBar
+   * Closes the current snackbar
    */
   closeSnackBar() {
     this.snackBar.dismiss();
   }
   /**
    * Opens an alert dialog with the specified parameters
-   * @param {AlertDialogConfig} opts The options for the dialog
-   * @returns {MatDialogRef<AlertDialog>}
+   * @param opts The options for the dialog
+   * @returns A reference of the alert dialog
    */
   openAlertDialog(opts: AlertDialogConfig): MatDialogRef<AlertDialog> {
     if (opts) {
@@ -236,8 +236,8 @@ export class SharedService {
   }
   /**
    * Opens a confirm dialog with the specified parameters
-   * @param {ConfirMatialogConfig} opts The options for the dialog
-   * @return {MatDialogRef<ConfirMatialog>}
+   * @param opts The options for the dialog
+   * @returns A reference of the confirm dialog
    */
   openConfirmDialog(opts: ConfirmDialogConfig): MatDialogRef<ConfirmDialog> {
     if (opts) {
@@ -266,8 +266,8 @@ export class SharedService {
   }
   /**
    * Opens a prompt dialog with the specified parameters
-   * @param {PromptDialogConfig} opts The options for the dialog
-   * @return {MatDialogRef<PromptDialog>}
+   * @param opts The options for the dialog
+   * @returns A reference of the prompt dialog
    */
   openPromptDialog(opts: PromptDialogConfig): MatDialogRef<PromptDialog> {
     if (opts) {
@@ -297,8 +297,8 @@ export class SharedService {
   }
   /**
    * Opens a selection dialog with the configured options
-   * @param {SelectionDialogConfig} opts The options for the dialog
-   * @returns {MatDialogRef<SelectionDialog>}
+   * @param opts The options for the dialog
+   * @returns A reference of the selection dialog
    */
   openSelectionDialog(opts: SelectionDialogConfig): MatDialogRef<SelectionDialog> {
     if (opts) {
@@ -311,7 +311,6 @@ export class SharedService {
   }
   /**
    * Gets all opens dialogs
-   * @returns {MatDialogRef<any>[]}
    */
   getDialogs(): MatDialogRef<any>[] {
     return this.dialog.openDialogs;
@@ -325,22 +324,20 @@ export class SharedService {
   /**
    * Gets a dialog by its id
    * @param {string} id The ID of the dialog
-   * @returns {MatDialogRef<any>}
    */
   getDialogById(id: string): MatDialogRef<any> {
     return this.dialog.getDialogById(id);
   }
   /**
    * Observable for after all dialogs have been closed
-   * @returns {Observable<void>}
    */
   afterAllClosed(): Observable<void> {
     return this.dialog.afterAllClosed;
   }
   /**
    * Throws an error with the specified parameters
-   * @param {string} variable The variable that was not specified
-   * @param {string} type The type of variable
+   * @param variable The variable that was not specified
+   * @param type The type of variable
    * @private
    */
   private throwError(variable: string, type: string) {
@@ -349,7 +346,7 @@ export class SharedService {
   }
   /**
    * Sets the document's title
-   * @param {string} title The title of the document to set
+   * @param title The title of the document to set
    */
   set title(title: string) {
     this._title = title;
@@ -487,7 +484,7 @@ export class PromptDialog implements OnInit {
   </mat-dialog-actions>
   `
 })
-export class SelectionDialog implements OnInit, DoCheck {
+export class SelectionDialog implements OnInit {
   @ViewChild('selection') selection: MatSelectionList;
   constructor(private dialogRef: MatDialogRef<SelectionDialog>) {
   }
@@ -503,52 +500,42 @@ export class SelectionDialog implements OnInit, DoCheck {
   ok() {
     this.dialogRef.close(this.selection.selectedOptions.selected);
   }
-  ngDoCheck() {
-  }
 }
 export interface SnackBarConfig {
   /**
    * The message for the snackBar
-   * @type {string}
    */
   msg: string;
   /**
    * The action for the snackBar
-   * @type {string}
    */
   action?: string;
   /**
    * The custom component for the snackBar to open in
-   * @type {ComponentType<any>}
    */
   component?: ComponentType<any>;
   /**
    * Additional options
-   * @type {MatSnackBarConfig}
    */
   additionalOpts?: MatSnackBarConfig;
 }
 export interface DialogConfig extends MatDialogConfig {
   /**
    * The message of the dialog
-   * @type {string|SafeHtml}
    */
   msg: string | SafeHtml;
   /**
    * The title of the dialog
-   * @type {string}
    */
   title?: string;
   /**
    * Whether the dialog's message is HTML
-   * @type {boolean}
    */
   isHtml?: boolean;
 }
 export interface AlertDialogConfig extends DialogConfig {
   /**
    * The ok button text
-   * @type {string}
    */
   ok?: string;
 }
@@ -556,12 +543,10 @@ export interface AlertDialogConfig extends DialogConfig {
 export interface ConfirmDialogConfig extends DialogConfig {
   /**
    * The ok button text
-   * @type {string}
    */
   ok?: string;
   /**
    * The cancel button text
-   * @type {string}
    */
   cancel?: string;
 }
@@ -569,81 +554,66 @@ export interface ConfirmDialogConfig extends DialogConfig {
 export interface PromptDialogConfig extends DialogConfig {
   /**
    * The ok button text
-   * @type {string}
    */
   ok?: string;
   /**
    * The cancel button text
-   * @type {string}
    */
   cancel?: string;
   /**
    * Whether the input is a `<textarea>`
-   * @type {boolean}
    */
   textarea?: boolean;
   /**
    * The placeholder of the input
-   * @type {string}
    */
   placeholder: string;
   /**
    * The input type
-   * @type {'text'|'email'|'password'|'number'}
    */
   inputType?: 'text' | 'email' | 'password' | 'number';
   /**
    * The initial value of the input
-   * @type {string|number}
    */
   value?: string | number;
   /**
    * The color of the input
-   * @type {'primary'|'accent'|'warn'}
    */
   color?: 'primary' | 'accent' | 'warn';
 }
 export interface SelectionDialogConfig extends DialogConfig {
   /**
    * The ok button text
-   * @type {string}
    */
   ok?: string;
   /**
    * The cancel button text
-   * @type {string}
    */
   cancel?: string;
   /**
    * The options for the selection dialog
-   * @type {SelectionDialogOptions[]}
    */
-  options: SelectionDialogOptions[];
+  options: SelectionDialogOption[];
 }
-export interface SelectionDialogOptions {
+export interface SelectionDialogOption {
   /**
    * The title of the selection list item
-   * @type {string}
    */
   content: string;
   /**
    * Whether the selection list item is disabled
-   * @type {boolean}
    */
   disabled?: boolean;
   /**
    * The value of the selection list item
-   * @type {any}
    */
   value: any;
   /**
    * The checkbox position of the selection list item
-   * @type {'before'|'after'}
    */
   checkboxPosition?: 'before' | 'after';
   /**
    * Whether the selection list item is initially selected
-   * @type {boolean}
    */
   selected?: boolean;
 }
