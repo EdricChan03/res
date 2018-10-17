@@ -3,6 +3,9 @@
 # Enable color support
 CLICOLOR=1
 
+# Automatically exit if an error happens
+set -e
+
 echo -e "\x1b[32m-----------------------"
 echo -e "| 1. Generating icons |"
 echo -e "-----------------------\x1b[0m"
