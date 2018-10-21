@@ -1,10 +1,13 @@
 import * as gulp from 'gulp';
+/*
 import * as chalk from 'chalk';
 import * as request from 'request';
 import * as fs from 'fs';
 import * as readline from 'readline';
+*/
 import { Logger } from '../utils/logger';
 
+/*
 interface RequestProgressError {
   errno: string;
   code: string;
@@ -16,21 +19,32 @@ interface RequestProgressError {
 const progress = require('request-progress');
 import * as transform from 'gulp-transform';
 const prettysize = require('prettysize');
-
+*/
 const logger = new Logger();
 
+/*
 //#region Patterns
 const SVG_PATTERN = /(<svg[^>]*) id="([^"]*)"/g;
 //#endregion
-
 let maxAttempts = 3;
 let currentAttempt = 1;
 let hideLoggerDebug = false;
-
+*/
+/**
+ * @deprecated
+ * @param value The value
+ * @param search The regex
+ * @param replacement The replacement
+ */
 function replaceAll(value: string, search: string, replacement: string) {
   return value.replace(new RegExp(search, 'g'), replacement);
 }
 
+/**
+ * @deprecated
+ * @param showFileTransfer Whether to show file transfer stats
+ */
+/*
 function downloadIcons(showFileTransfer: boolean) {
   return progress(request('https://materialdesignicons.com/api/download/angularmaterial/38EF63D0-4744-11E4-B3CF-842B2B6CFE1B'))
     .on('progress', (state: { percent: number, size: { total: number, transferred: number } }) => {
@@ -70,12 +84,16 @@ function downloadIcons(showFileTransfer: boolean) {
     })
     .pipe(fs.createWriteStream('src/assets/mdi.svg'));
 }
+*/
+
 /**
  * Downloads icons from {@link https://materialdesignicons.com}
+ * @deprecated
  * - Parameter `--file-tranfer`: Specify a boolean to show file transferring stats when downloading
  * - Parameter `--hide-debug`: Whether to hide debug logging
  * - Parameter `--attempts`: Sets the amount of attempts to try for before giving up
  */
+/*
 gulp.task('download-icons', () => {
   // tslint:disable-next-line:max-line-length
   let showFileTransfer = true;
@@ -115,17 +133,26 @@ gulp.task('download-icons', () => {
   return downloadIcons(showFileTransfer);
   // done();
 });
+*/
 
 /**
  * Modifies the icons in order to work with Angular Material 2/5
+ * @deprecated
  */
+/*
 gulp.task('modify-icons', () => {
   logger.info('Modifying the icons to use <svg>...');
   return gulp.src('src/assets/mdi.svg')
     .pipe(transform('utf8', transformIconFile))
     .pipe(gulp.dest('src/assets'));
 });
+*/
 
+/**
+ * @deprecated
+ * @param content
+ */
+/*
 function transformIconFile(content: string): string {
   // content = content.replace(SVG_PATTERN, (_match: string, head: string, id: string) =>
   //  `${head} id="${id}" width="24px" height="24px" viewBox="0 0 24 24"`
@@ -135,20 +162,28 @@ function transformIconFile(content: string): string {
   content = replaceAll(content, '</g>', '</svg>');
   return content;
 }
+*/
 
+gulp.task('copy-icons', () => {
+  return gulp.src('node_modules/@mdi/angular-material/mdi.svg')
+    .pipe(gulp.dest('src/assets'));
+});
 /**
  * The default workflow to use MDI in the project
  */
-gulp.task('default-icons', gulp.series('download-icons', 'modify-icons', (done) => {
+gulp.task('default-icons', gulp.series('copy-icons', (done) => {
   logger.success('Tasks finished!');
   done();
   process.exit();
 }));
 /**
  * The workflow to use MDI in the project but assumes that the user has already downloaded `mdi.svg`
+ * @deprecated
  */
+/*
 gulp.task('no-download-icons', gulp.series('modify-icons', (done) => {
   logger.success('Tasks finished!');
   done();
   process.exit();
 }));
+*/

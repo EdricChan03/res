@@ -7,7 +7,7 @@ CLICOLOR=1
 set -e
 
 echo -e "\x1b[32m-----------------------"
-echo -e "| 1. Generating icons |"
+echo -e "| 1. Copying icons |"
 echo -e "-----------------------\x1b[0m"
 gulp default-icons
 # Builds the app in production mode

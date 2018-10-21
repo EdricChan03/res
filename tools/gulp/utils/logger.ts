@@ -5,6 +5,9 @@ export declare type BoldType = 'all' | 'none' | 'prefix';
 
 export class Logger {
   console: Console | any;
+  /**
+   * @param loggerConsole The console object to use
+   */
   constructor(loggerConsole?: Console) {
     if (loggerConsole) {
       this.console = loggerConsole;
@@ -13,7 +16,7 @@ export class Logger {
     }
   }
   /**
-   * Bold handler
+   * Handles bolding
    * @param bold The type of bold
    * @param prefix The prefix of the statement
    * @param statement The statement itself
