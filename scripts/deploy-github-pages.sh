@@ -20,7 +20,8 @@ ng build --prod --base-href /res/ --deploy-url /res/
 echo -e "\x1b[32m--------------------"
 echo -e "| 3. Copying files |"
 echo -e "--------------------\x1b[0m"
-cp ./src/assets/{mdi.svg,material-light.css,material-dark.css,init-blogger.js,studybuddy} dist/
+cp ./src/assets/{mdi.svg,material-light.css,material-dark.css,init-blogger.js} dist/
+cp -R ./src/assets/studybuddy dist/
 
 # Deploys the app to Github pages
 echo -e "\x1b[32m--------------------------------"
