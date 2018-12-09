@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   constructor(private shared: SharedService) {
-    this.shared.title = 'Home';
+    shared.title = 'Home';
   }
 
   ngOnInit() {
