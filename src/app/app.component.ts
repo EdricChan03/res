@@ -30,7 +30,7 @@ export class AppComponent {
   // See https://stackoverflow.com/a/12444641 for more info
   keyMaps = {};
   constructor(
-    private shared: SharedService,
+    public shared: SharedService,
     private dialog: MatDialog,
     private router: Router,
     private http: HttpClient
@@ -106,9 +106,6 @@ export class AppComponent {
       console.log('Closing keyboard shortcuts...');
       this.dialog.getDialogById('keyboard-shortcut-dialog').close();
     }
-  }
-  getTitle() {
-    return this.shared.title;
   }
   scrollToTop() {
     document.getElementById('top').scrollIntoView({
