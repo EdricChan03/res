@@ -1,0 +1,70 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://chan4077.github.io/res/schemas/help-articles.json",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "The schema to use for the JSON file."
+    },
+    "version": {
+      "$comment": "Increment this only when there are major changes to the schema.",
+      "$id": "#/properties/version",
+      "type": "integer",
+      "description": "The version of the schema to use.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "articles": {
+      "$id": "#/properties/articles",
+      "type": "array",
+      "description": "A list of help articles.",
+      "items": {
+        "$id": "#/properties/articles/items",
+        "type": "object",
+        "required": [
+          "articleTitle",
+          "articleUri"
+        ],
+        "properties": {
+          "isHidden": {
+            "$id": "#/properties/articles/items/properties/isHidden",
+            "type": "boolean",
+            "description": "Whether the help article is hidden from the list of help articles",
+            "default": false
+          },
+          "articleDesc": {
+            "$id": "#/properties/articles/items/properties/articleDesc",
+            "type": "string",
+            "description": "The description of the help article.",
+            "examples": [
+              "More info about how StudyBuddy was created/started",
+              "A 4-step guide on getting started"
+            ]
+          },
+          "articleTitle": {
+            "$id": "#/properties/articles/items/properties/articleTitle",
+            "type": "string",
+            "description": "The title of the help article.",
+            "examples": [
+              "About StudyBuddy",
+              "Getting started"
+            ]
+          },
+          "articleUri": {
+            "$comment": "TODO: Add support for URL check",
+            "$id": "#/properties/articles/items/properties/articleUri",
+            "type": "string",
+            "description": "The URI of the help article.",
+            "examples": [
+              "https://github.com/Chan4077/StudyBuddy/wiki/Contact-us",
+              "https://github.com/Chan4077/StudyBuddy/wiki/About-the-todo-dialog"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
