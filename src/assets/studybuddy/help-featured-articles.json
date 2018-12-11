@@ -14,9 +14,9 @@
     },
     {
       "articleDesc": "Ways to contact us on all platforms",
+      "articleIcon": "com.edricchan.studybuddy.article.icon.CONTACT",
       "articleTitle": "Contact us",
-      "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Contact-us",
-      "iconType": "com.edricchan.studybuddy.article.icon.CONTACT"
+      "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Contact-us"
     },
     {
       "articleDesc": "All configurable settings",

@@ -29,8 +29,8 @@
           "articleUri"
         ],
         "properties": {
-          "iconType": {
-            "$id": "#/properties/articles/items/properties/iconType",
+          "articleIcon": {
+            "$id": "#/properties/articles/items/properties/articleIcon",
             "type": "string",
             "description": "Specifies the type of icon to show next to the text.",
             "enum": [
@@ -40,12 +40,6 @@
               "com.edricchan.studybuddy.article.icon.SEND_FEEDBACK"
             ],
             "default": "com.edricchan.studybuddy.article.icon.DOCUMENT"
-          },
-          "isHidden": {
-            "$id": "#/properties/articles/items/properties/isHidden",
-            "type": "boolean",
-            "description": "Whether the help article is hidden from the list of help articles",
-            "default": false
           },
           "articleDesc": {
             "$id": "#/properties/articles/items/properties/articleDesc",
@@ -74,6 +68,12 @@
               "https://github.com/Chan4077/StudyBuddy/wiki/Contact-us",
               "https://github.com/Chan4077/StudyBuddy/wiki/About-the-todo-dialog"
             ]
+          },
+          "isHidden": {
+            "$id": "#/properties/articles/items/properties/isHidden",
+            "type": "boolean",
+            "description": "Whether the help article is hidden from the list of help articles",
+            "default": false
           }
         }
       }
