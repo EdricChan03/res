@@ -29,6 +29,18 @@
           "articleUri"
         ],
         "properties": {
+          "iconType": {
+            "$id": "#/properties/articles/items/properties/iconType",
+            "type": "string",
+            "description": "Specifies the type of icon to show next to the text.",
+            "enum": [
+              "com.edricchan.studybuddy.article.icon.CONTACT",
+              "com.edricchan.studybuddy.article.icon.DOCUMENT",
+              "com.edricchan.studybuddy.article.icon.HELP",
+              "com.edricchan.studybuddy.article.icon.SEND_FEEDBACK"
+            ],
+            "default": "com.edricchan.studybuddy.article.icon.DOCUMENT"
+          },
           "isHidden": {
             "$id": "#/properties/articles/items/properties/isHidden",
             "type": "boolean",
