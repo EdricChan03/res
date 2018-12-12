@@ -1,17 +1,28 @@
-[
-  {
-    "articleDesc": "Getting started with StudyBuddy",
-    "articleTitle": "Getting Started",
-    "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Getting-Started"
-  },
-  {
-    "articleDesc": "Information about the todo dialog",
-    "articleTitle": "About the todo dialog",
-    "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Todo-dialog"
-  },
-  {
-    "articleDesc": "Ways to contact us on all platforms",
-    "articleTitle": "Contact us",
-    "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Contact-us"
-  }
-]
+{
+  "$schema": "./help-articles-schema.json",
+  "version": 1,
+  "articles": [
+    {
+      "articleDesc": "Getting started with StudyBuddy",
+      "articleTitle": "Getting Started",
+      "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Getting-Started"
+    },
+    {
+      "articleDesc": "Information about the todo dialog",
+      "articleTitle": "About the todo dialog",
+      "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Todo-dialog"
+    },
+    {
+      "articleDesc": "Ways to contact us on all platforms",
+      "articleIcon": "com.edricchan.studybuddy.article.icon.CONTACT",
+      "articleTitle": "Contact us",
+      "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Contact-us"
+    },
+    {
+      "articleDesc": "All configurable settings",
+      "articleTitle": "Settings",
+      "articleUri": "https://github.com/Chan4077/StudyBuddy/wiki/Settings",
+      "isHidden": true
+    }
+  ]
+}
